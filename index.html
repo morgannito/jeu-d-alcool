@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeux de Soirée - Alcool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍻 Jeux de Soirée 🍻</h1>
+        </header>
+
+        <!-- Menu de sélection des jeux -->
+        <div id="menu" class="menu">
+            <h2>Choisissez votre jeu</h2>
+            <div class="game-buttons">
+                <button class="game-btn" onclick="startGame('truthOrDare')">
+                    <span class="icon">🎭</span>
+                    <span>Action ou Vérité</span>
+                </button>
+                <button class="game-btn" onclick="startGame('gage')">
+                    <span class="icon">🎯</span>
+                    <span>Gage de Con</span>
+                </button>
+                <button class="game-btn" onclick="startGame('distribution')">
+                    <span class="icon">🍺</span>
+                    <span>Distribution de Gorgées</span>
+                </button>
+                <button class="game-btn" onclick="startGame('roulette')">
+                    <span class="icon">🎰</span>
+                    <span>Roulette Russe</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Zone de jeu -->
+        <div id="gameArea" class="game-area hidden">
+            <button class="back-btn" onclick="backToMenu()">← Retour au menu</button>
+
+            <div id="gameContent" class="game-content">
+                <!-- Le contenu du jeu sera inséré ici -->
+            </div>
+
+            <div class="game-controls">
+                <button id="nextBtn" class="next-btn" onclick="nextChallenge()">
+                    Suivant
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>⚠️ À consommer avec modération - Ne buvez pas si vous conduisez</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
