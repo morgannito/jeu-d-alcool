@@ -519,7 +519,19 @@ function initializeGames() {
         roulette: {
             name: "Roulette Russe",
             challenges: challengeGenerators.generateRoulette()
-        }
+        },
+        // Add game types from gamesData if available
+        ...(typeof gamesData !== 'undefined' ? {
+            mime: gamesData.mime,
+            hotSeat: gamesData.hotSeat,
+            duel: gamesData.duel,
+            vote: gamesData.vote,
+            histoire: gamesData.histoire,
+            regles: gamesData.regles,
+            compliment: gamesData.compliment,
+            cascade: gamesData.cascade,
+            hotSexy: gamesData.hotSexy
+        } : {})
     };
 
     console.log(`🎮 Base de données chargée :`);
@@ -528,12 +540,16 @@ function initializeGames() {
     console.log(`   - Gages: ${games.gage.challenges.length}`);
     console.log(`   - Distributions: ${games.distribution.challenges.length}`);
     console.log(`   - Roulette: ${games.roulette.challenges.length}`);
+    if (games.hotSexy) {
+        console.log(`   - Hot & Sexy: ${games.hotSexy.challenges.length}`);
+    }
     console.log(`   📊 TOTAL: ${
         games.truthOrDare.truths.length +
         games.truthOrDare.dares.length +
         games.gage.challenges.length +
         games.distribution.challenges.length +
-        games.roulette.challenges.length
+        games.roulette.challenges.length +
+        (games.hotSexy ? games.hotSexy.challenges.length : 0)
     } défis !`);
 }
 
