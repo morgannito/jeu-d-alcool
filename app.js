@@ -1,6 +1,7 @@
 // État du jeu
 let currentGame = null;
 let games = null;
+let challengeCount = 0;
 
 // Générateurs de défis massifs
 const challengeGenerators = {
@@ -530,11 +531,46 @@ function initializeGames() {
     } défis !`);
 }
 
+// Fonction pour toggle le son
+function toggleSound() {
+    const soundBtn = document.getElementById('soundToggle');
+    const isEnabled = AudioSystem.toggle();
+
+    if (isEnabled) {
+        soundBtn.textContent = '🔊';
+        soundBtn.classList.remove('muted');
+        AudioSystem.sounds.success();
+        showNotification('Son activé ! 🔊');
+    } else {
+        soundBtn.textContent = '🔇';
+        soundBtn.classList.add('muted');
+        showNotification('Son désactivé 🔇');
+    }
+}
+
+// Afficher une notification
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification-badge';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    setTimeout(() => notification.remove(), 3000);
+}
+
 // Démarrer un jeu
 function startGame(gameType) {
     currentGame = gameType;
+    challengeCount = 0;
+    updateCounter();
+
+    // Sons et effets
+    AudioSystem.sounds.click();
+    VisualEffects.createParticles(window.innerWidth / 2, window.innerHeight / 2);
+
     document.getElementById('menu').classList.add('hidden');
     document.getElementById('gameArea').classList.remove('hidden');
+    document.getElementById('challengeCounter').classList.remove('hidden');
 
     nextChallenge();
 }
@@ -542,14 +578,30 @@ function startGame(gameType) {
 // Retour au menu
 function backToMenu() {
     currentGame = null;
+    challengeCount = 0;
+
+    // Sons et effets
+    AudioSystem.sounds.click();
+
     document.getElementById('menu').classList.remove('hidden');
     document.getElementById('gameArea').classList.add('hidden');
+    document.getElementById('challengeCounter').classList.add('hidden');
     document.getElementById('gameContent').innerHTML = '';
+}
+
+// Mettre à jour le compteur
+function updateCounter() {
+    document.getElementById('counterValue').textContent = challengeCount;
 }
 
 // Défi suivant
 function nextChallenge() {
     let content = '';
+    challengeCount++;
+    updateCounter();
+
+    // Son de nouveau défi
+    AudioSystem.sounds.newChallenge();
 
     switch(currentGame) {
         case 'truthOrDare':
@@ -614,16 +666,32 @@ function getRoulette() {
     const challenge = games.roulette.challenges[Math.floor(Math.random() * games.roulette.challenges.length)];
 
     let color = '#667eea';
+
+    // Effets spéciaux selon le type
     switch(challenge.type) {
         case 'jackpot':
         case 'safe':
             color = 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)';
+            AudioSystem.sounds.jackpot();
+            VisualEffects.createConfetti(30);
+            VisualEffects.flash('rgba(56, 239, 125, 0.3)');
             break;
         case 'chug':
             color = 'linear-gradient(135deg, #eb3349 0%, #f45c43 100%)';
+            AudioSystem.sounds.chug();
+            VisualEffects.flash('rgba(235, 51, 73, 0.3)');
+            setTimeout(() => {
+                const card = document.querySelector('.challenge-card');
+                if (card) VisualEffects.shake(card);
+            }, 100);
             break;
         case 'everyone':
             color = 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
+            AudioSystem.sounds.warning();
+            VisualEffects.createConfetti(15);
+            break;
+        default:
+            // Sons normaux pour les autres types
             break;
     }
 
@@ -639,4 +707,15 @@ function getRoulette() {
 window.addEventListener('load', () => {
     initializeGames();
     console.log('Jeux de soirée chargés ! 🍻');
+
+    // Ajouter des effets sonores sur les boutons
+    const buttons = document.querySelectorAll('.game-btn, .next-btn, .back-btn');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            AudioSystem.sounds.hover();
+        });
+    });
+
+    // Message de bienvenue
+    showNotification('🎉 Bienvenue ! Plus de 11 000 défis vous attendent !');
 });

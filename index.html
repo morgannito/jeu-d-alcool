@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Bouton de contrôle du son -->
+    <button id="soundToggle" class="sound-toggle" onclick="toggleSound()" title="Activer/Désactiver le son">
+        🔊
+    </button>
+
+    <!-- Compteur de défis -->
+    <div id="challengeCounter" class="challenge-counter hidden">
+        Défi #<span id="counterValue">0</span>
+    </div>
+
     <div class="container">
         <header>
             <h1>🍻 Jeux de Soirée 🍻</h1>
@@ -55,6 +65,7 @@
         <p>⚠️ À consommer avec modération - Ne buvez pas si vous conduisez</p>
     </footer>
 
+    <script src="effects.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

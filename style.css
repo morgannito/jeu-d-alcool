@@ -219,6 +219,304 @@ footer {
     }
 }
 
+/* Bouton de contrôle du son */
+.sound-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5em;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.sound-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.sound-toggle.muted {
+    background: rgba(200, 200, 200, 0.9);
+}
+
+/* Confettis */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    z-index: 9999;
+    animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Particules */
+.particle {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    animation: particle-burst 1s ease-out forwards;
+}
+
+@keyframes particle-burst {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--vx), var(--vy)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Flash d'écran */
+.screen-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9998;
+    animation: flash 0.3s ease-out;
+}
+
+@keyframes flash {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Animation de shake */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
+}
+
+/* Animation de glow */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(102, 126, 234, 1), 0 0 30px rgba(102, 126, 234, 0.8);
+    }
+}
+
+/* Animation de bounce améliorée */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Animation de rotation 3D */
+@keyframes rotate3d {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+/* Effet de typing */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Amélioration du pulse */
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Animation de brillance */
+@keyframes shine {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* Effet hover amélioré pour les boutons */
+.game-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.game-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.game-btn:hover::before {
+    left: 100%;
+}
+
+/* Animation pour la carte de défi */
+.challenge-card {
+    animation: challenge-appear 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes challenge-appear {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1) rotate(10deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Effet de halo pour le bouton suivant */
+.next-btn {
+    position: relative;
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* Compteur de défis */
+.challenge-counter {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    color: #667eea;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Effet de vague pour le background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: -1;
+    animation: gradient-shift 10s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Badge de notification */
+.notification-badge {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: slideInRight 0.5s ease-out, slideOutRight 0.5s ease-in 2.5s forwards;
+    z-index: 1001;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     header h1 {
@@ -236,5 +534,20 @@ footer {
     .challenge-card {
         font-size: 1.1em;
         padding: 30px 20px;
+    }
+
+    .sound-toggle {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+    }
+
+    .challenge-counter {
+        top: 10px;
+        left: 10px;
+        padding: 8px 15px;
+        font-size: 0.9em;
     }
 }
