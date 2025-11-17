@@ -1,20 +1,57 @@
-// État du jeu
+// ===================================
+// JEU D'ALCOOL - ULTIMATE EDITION
+// Fichier fusionné et corrigé
+// ===================================
+
+// ===================================
+// VARIABLES GLOBALES (Déclarées une seule fois)
+// ===================================
 let currentGame = null;
 let games = null;
 let challengeCount = 0;
-
-// Nouveau: Système de joueurs
 let players = [];
 let currentPlayerIndex = 0;
-
-// Nouveau: Historique des défis
+let teams = [];
+let teamMode = false;
 let challengeHistory = [];
 let currentHistoryIndex = -1;
+let selectedDifficulty = 'all';
+let sessionStartTime = Date.now();
+let mixCount = 0;
+let hardCount = 0;
 
-// Nouveau: Difficulté sélectionnée
-let selectedDifficulty = 'all'; // 'all', 'easy', 'medium', 'hard'
+// ===================================
+// ACHIEVEMENTS
+// ===================================
+const achievements = {
+    first: { id: 'first', name: 'Premier défi', desc: 'Complète ton premier défi', icon: '🎯', unlocked: false, condition: () => challengeCount >= 1 },
+    ten: { id: 'ten', name: 'Échauffement', desc: 'Complète 10 défis', icon: '🔥', unlocked: false, condition: () => challengeCount >= 10 },
+    fifty: { id: 'fifty', name: 'Warrior', desc: 'Complète 50 défis', icon: '⚔️', unlocked: false, condition: () => challengeCount >= 50 },
+    party: { id: 'party', name: 'Party Animal', desc: 'Joue pendant 30 min', icon: '🎉', unlocked: false, condition: () => (Date.now() - sessionStartTime) >= 1800000 },
+    team: { id: 'team', name: 'Esprit d\'équipe', desc: 'Joue en mode équipe', icon: '👥', unlocked: false, condition: () => teamMode },
+    mix: { id: 'mix', name: 'Maître du Mix', desc: 'Joue 10 défis en mode Mix', icon: '🎲', unlocked: false, condition: () => mixCount >= 10 },
+    hard: { id: 'hard', name: 'Casse-cou', desc: 'Complète 10 défis difficiles', icon: '😈', unlocked: false, condition: () => hardCount >= 10 },
+    social: { id: 'social', name: 'Social', desc: 'Joue avec 5+ joueurs', icon: '🎭', unlocked: false, condition: () => players.length >= 5 },
+    night: { id: 'night', name: 'Oiseau de nuit', desc: 'Joue après minuit', icon: '🌙', unlocked: false, condition: () => new Date().getHours() >= 0 && new Date().getHours() < 6 },
+    legend: { id: 'legend', name: 'Légende', desc: 'Complète 100 défis', icon: '👑', unlocked: false, condition: () => challengeCount >= 100 }
+};
 
-// Générateurs de défis massifs
+// ===================================
+// MUSIQUE
+// ===================================
+const playlists = {
+    party: ['Party Rock Anthem', 'Uptown Funk', 'Don\'t Stop Me Now', 'Celebration', 'September'],
+    chill: ['Sunday Morning', 'Fireflies', 'Budapest', 'Riptide', 'Home'],
+    intense: ['Eye of the Tiger', 'Thunderstruck', 'Till I Collapse', 'Lose Yourself', 'We Will Rock You']
+};
+
+let currentPlaylist = 'none';
+let currentTrackIndex = 0;
+let isPlaying = false;
+
+// ===================================
+// GÉNÉRATEURS DE DÉFIS MASSIFS
+// ===================================
 const challengeGenerators = {
     // Générateur de vérités
     generateTruths: function() {
@@ -337,14 +374,6 @@ const challengeGenerators = {
             {text: "Le plus vieux boit 3 gorgées", sips: 3}
         ];
 
-        const criteria = [
-            "Tous ceux qui portent {couleur}",
-            "Tous ceux qui ont {caracteristique}",
-            "Tous ceux qui sont {etat}",
-            "Tous ceux qui ont déjà {action}",
-            "Tous ceux qui aiment {chose}"
-        ];
-
         const couleurs = ["du noir", "du blanc", "du rouge", "du bleu", "du vert", "du jaune", "du rose", "du violet", "du gris", "du orange"];
 
         const caracteristiques = [
@@ -370,8 +399,6 @@ const challengeGenerators = {
             "embrassé quelqu'un ici", "pleuré récemment", "déménagé cette année",
             "changé de travail/école", "été malade cette année"
         ];
-
-        const choses = ["le sport", "la musique", "les animaux", "voyager", "cuisiner", "lire", "les jeux vidéo"];
 
         const sipsValues = [1, 2, 3, 4, 5, 6, "cul sec"];
 
@@ -505,7 +532,9 @@ const challengeGenerators = {
     }
 };
 
-// Initialisation des jeux avec génération massive
+// ===================================
+// INITIALISATION DES JEUX
+// ===================================
 function initializeGames() {
     games = {
         truthOrDare: {
@@ -542,7 +571,9 @@ function initializeGames() {
     } défis !`);
 }
 
-// Fonction pour toggle le son
+// ===================================
+// CONTRÔLES AUDIO ET NOTIFICATIONS
+// ===================================
 function toggleSound() {
     const soundBtn = document.getElementById('soundToggle');
     const isEnabled = AudioSystem.toggle();
@@ -559,7 +590,6 @@ function toggleSound() {
     }
 }
 
-// Afficher une notification
 function showNotification(message) {
     const notification = document.createElement('div');
     notification.className = 'notification-badge';
@@ -569,20 +599,202 @@ function showNotification(message) {
     setTimeout(() => notification.remove(), 3000);
 }
 
-// Démarrer un jeu (MODIFIÉ avec nouvelles fonctionnalités)
+// ===================================
+// GESTION DES JOUEURS
+// ===================================
+function addPlayer() {
+    const input = document.getElementById('playerNameInput');
+    const name = input.value.trim();
+
+    if (name && players.length < 10) {
+        const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E2', '#F8B739', '#52B788'];
+        players.push({
+            name: name,
+            color: colors[players.length % colors.length],
+            score: 0
+        });
+        input.value = '';
+        updatePlayerList();
+        updateStartButton();
+        AudioSystem.sounds.success();
+    }
+}
+
+function removePlayer(index) {
+    players.splice(index, 1);
+    updatePlayerList();
+    updateStartButton();
+    AudioSystem.sounds.click();
+}
+
+function updatePlayerList() {
+    const list = document.getElementById('playerList');
+    list.innerHTML = players.map((p, i) => `
+        <div class="player-card" style="background: ${p.color}">
+            <span class="player-name">${p.name}</span>
+            <button class="remove-player" onclick="removePlayer(${i})">×</button>
+        </div>
+    `).join('');
+}
+
+function updateCurrentPlayer() {
+    const indicator = document.getElementById('currentPlayerIndicator');
+    const nameSpan = document.getElementById('currentPlayerName');
+
+    if (players.length > 0 && !teamMode) {
+        const player = players[currentPlayerIndex];
+        nameSpan.textContent = `Tour de ${player.name}`;
+        nameSpan.style.color = player.color;
+        indicator.classList.remove('hidden');
+    } else if (teamMode && teams.length > 0) {
+        const team = teams[currentPlayerIndex % teams.length];
+        nameSpan.textContent = `Équipe ${team.name}`;
+        nameSpan.style.color = team.color;
+        indicator.classList.remove('hidden');
+    } else {
+        indicator.classList.add('hidden');
+    }
+}
+
+function nextPlayer() {
+    if (teamMode && teams.length > 0) {
+        currentPlayerIndex = (currentPlayerIndex + 1) % teams.length;
+    } else if (players.length > 0) {
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+    }
+    updateCurrentPlayer();
+}
+
+// ===================================
+// GESTION DES ÉQUIPES
+// ===================================
+function toggleTeamMode() {
+    teamMode = document.getElementById('teamModeCheckbox').checked;
+    const playersSection = document.getElementById('playersSection');
+    const teamsSection = document.getElementById('teamsSection');
+
+    if (teamMode) {
+        playersSection.classList.add('hidden');
+        teamsSection.classList.remove('hidden');
+        players = [];
+        updatePlayerList();
+    } else {
+        playersSection.classList.remove('hidden');
+        teamsSection.classList.add('hidden');
+        teams = [];
+        updateTeamsList();
+    }
+    updateStartButton();
+}
+
+function addTeam() {
+    const input = document.getElementById('teamNameInput');
+    const name = input.value.trim();
+
+    if (name && teams.length < 4) {
+        const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A'];
+        teams.push({
+            name: name,
+            color: colors[teams.length % colors.length],
+            score: 0
+        });
+        input.value = '';
+        updateTeamsList();
+        updateStartButton();
+        AudioSystem.sounds.success();
+    }
+}
+
+function removeTeam(index) {
+    teams.splice(index, 1);
+    updateTeamsList();
+    updateStartButton();
+    AudioSystem.sounds.click();
+}
+
+function updateTeamsList() {
+    const list = document.getElementById('teamsList');
+    list.innerHTML = teams.map((t, i) => `
+        <div class="team-card" style="background: ${t.color}">
+            <span>${t.name}</span>
+            <button onclick="removeTeam(${i})">×</button>
+        </div>
+    `).join('');
+}
+
+function updateTeamScores() {
+    const scoresDiv = document.getElementById('teamScores');
+    const scoresList = document.getElementById('scoresList');
+
+    if (teamMode && teams.length > 0) {
+        scoresDiv.classList.remove('hidden');
+        scoresList.innerHTML = teams.map(t => `
+            <div class="team-score" style="border-left: 4px solid ${t.color}">
+                <div class="team-score-name">${t.name}</div>
+                <div class="team-score-points">${t.score} pts</div>
+            </div>
+        `).join('');
+    } else {
+        scoresDiv.classList.add('hidden');
+    }
+}
+
+function addPointsToCurrentTeam(points) {
+    if (teamMode && teams.length > 0) {
+        teams[currentPlayerIndex % teams.length].score += points;
+        updateTeamScores();
+    }
+}
+
+// ===================================
+// CONFIGURATION & NAVIGATION
+// ===================================
+function updateStartButton() {
+    const btn = document.getElementById('startBtn');
+    const canStart = (teamMode && teams.length >= 2) || (!teamMode && players.length > 0) || (!teamMode && players.length === 0);
+    btn.disabled = !canStart;
+}
+
+function skipSetup() {
+    players = [];
+    teams = [];
+    teamMode = false;
+    showMenu();
+}
+
+function startWithConfig() {
+    showMenu();
+    AudioSystem.sounds.success();
+    VisualEffects.createConfetti(30);
+}
+
+function showMenu() {
+    document.getElementById('playerSetup').classList.add('hidden');
+    document.getElementById('menu').classList.remove('hidden');
+    updateTeamScores();
+}
+
+function backToSetup() {
+    document.getElementById('menu').classList.add('hidden');
+    document.getElementById('playerSetup').classList.remove('hidden');
+    AudioSystem.sounds.click();
+}
+
+// ===================================
+// DÉMARRAGE DU JEU
+// ===================================
 function startGame(gameType) {
     currentGame = gameType;
     challengeCount = 0;
-    currentHistoryIndex = -1;
     challengeHistory = [];
+    currentHistoryIndex = -1;
     updateCounter();
 
-    // Sons et effets
     AudioSystem.sounds.click();
     VisualEffects.createParticles(window.innerWidth / 2, window.innerHeight / 2);
 
-    // Initialiser le système de joueurs
-    if (players.length > 0) {
+    // Initialiser joueurs/équipes
+    if (players.length > 0 || teams.length > 0) {
         currentPlayerIndex = 0;
         updateCurrentPlayer();
     }
@@ -591,19 +803,16 @@ function startGame(gameType) {
     document.getElementById('gameArea').classList.remove('hidden');
     document.getElementById('challengeCounter').classList.remove('hidden');
 
-    // Réinitialiser les boutons de navigation
     document.getElementById('prevBtn').disabled = true;
     updateHistoryDisplay();
 
     nextChallenge();
 }
 
-// Retour au menu (MODIFIÉ)
 function backToMenu() {
     currentGame = null;
     challengeCount = 0;
 
-    // Sons et effets
     AudioSystem.sounds.click();
 
     document.getElementById('menu').classList.remove('hidden');
@@ -614,14 +823,106 @@ function backToMenu() {
     document.getElementById('gameContent').innerHTML = '';
 }
 
-// Mettre à jour le compteur
+// ===================================
+// COMPTEUR & HISTORIQUE
+// ===================================
 function updateCounter() {
     document.getElementById('counterValue').textContent = challengeCount;
 }
 
-// Défi suivant (MODIFIÉ avec nouvelles fonctionnalités)
+function addToHistory(challengeContent) {
+    if (currentHistoryIndex < challengeHistory.length - 1) {
+        challengeHistory = challengeHistory.slice(0, currentHistoryIndex + 1);
+    }
+
+    challengeHistory.push({
+        content: challengeContent,
+        type: currentGame,
+        number: challengeCount
+    });
+
+    currentHistoryIndex = challengeHistory.length - 1;
+    updateHistoryDisplay();
+    updateNavigationButtons();
+}
+
+function updateHistoryDisplay() {
+    const historyList = document.getElementById('historyList');
+    const historyCount = document.getElementById('historyCount');
+
+    historyCount.textContent = challengeHistory.length;
+
+    historyList.innerHTML = challengeHistory.slice().reverse().map((item, index) => `
+        <div class="history-item">
+            <span class="history-number">#${item.number}</span>
+        </div>
+    `).join('');
+}
+
+function toggleHistory() {
+    const panel = document.getElementById('historyPanel');
+    panel.classList.toggle('hidden');
+    AudioSystem.sounds.click();
+}
+
+function previousChallenge() {
+    if (currentHistoryIndex > 0) {
+        currentHistoryIndex--;
+        displayChallengeFromHistory();
+        updateNavigationButtons();
+        AudioSystem.sounds.click();
+    }
+}
+
+function displayChallengeFromHistory() {
+    const challenge = challengeHistory[currentHistoryIndex];
+    document.getElementById('gameContent').innerHTML = challenge.content;
+    document.getElementById('counterValue').textContent = challenge.number;
+}
+
+function updateNavigationButtons() {
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    prevBtn.disabled = currentHistoryIndex <= 0;
+    nextBtn.textContent = currentHistoryIndex < challengeHistory.length - 1 ? 'Suivant →' : 'Nouveau défi →';
+}
+
+// ===================================
+// SYSTÈME DE DIFFICULTÉ
+// ===================================
+function updateDifficulty() {
+    selectedDifficulty = document.getElementById('difficultySelect').value;
+    AudioSystem.sounds.click();
+}
+
+function getDifficultyLevel(challenge) {
+    const challengeText = typeof challenge === 'string' ? challenge : challenge.text || '';
+    const lowerText = challengeText.toLowerCase();
+
+    if (lowerText.includes('cul sec') || lowerText.includes('strip') ||
+        lowerText.includes('embrasse') || lowerText.includes('18+') ||
+        lowerText.includes('nue') || lowerText.includes('nu ') ||
+        lowerText.includes('body shot') || lowerText.includes('suçon') ||
+        lowerText.match(/\d+ gorgées/) && parseInt(lowerText.match(/\d+/)[0]) >= 6) {
+        return 'hard';
+    }
+
+    if (lowerText.includes('pompes') || lowerText.includes('squats') ||
+        lowerText.includes('danse') || lowerText.includes('chante') ||
+        lowerText.includes('masse') || lowerText.includes('câlin') ||
+        lowerText.match(/\d+ gorgées/) && parseInt(lowerText.match(/\d+/)[0]) >= 3) {
+        return 'medium';
+    }
+
+    return 'easy';
+}
+
+// ===================================
+// GÉNÉRATION DES DÉFIS
+// ===================================
 function nextChallenge() {
-    // Si on navigue dans l'historique, vérifier si on peut avancer
+    // Navigation dans l'historique
     if (currentHistoryIndex < challengeHistory.length - 1) {
         currentHistoryIndex++;
         displayChallengeFromHistory();
@@ -631,19 +932,23 @@ function nextChallenge() {
     }
 
     // Nouveau défi
-    let content = '';
     challengeCount++;
     updateCounter();
 
-    // Son de nouveau défi
     AudioSystem.sounds.newChallenge();
 
     // Passer au joueur suivant
-    if (players.length > 0) {
+    if (players.length > 0 || teams.length > 0) {
         nextPlayer();
     }
 
+    // Points pour l'équipe (si mode équipe)
+    if (teamMode && teams.length > 0) {
+        addPointsToCurrentTeam(1);
+    }
+
     // Générer le défi selon la catégorie
+    let content = '';
     switch(currentGame) {
         case 'mix':
             content = getMix();
@@ -689,10 +994,16 @@ function nextChallenge() {
             break;
     }
 
-    document.getElementById('gameContent').innerHTML = content;
+    // Tracker difficulté
+    if (getDifficultyLevel(content) === 'hard') {
+        hardCount++;
+    }
 
-    // Ajouter à l'historique
-    addToHistory(content, currentGame);
+    document.getElementById('gameContent').innerHTML = content;
+    addToHistory(content);
+
+    // Vérifier les achievements
+    checkAchievements();
 }
 
 // Action ou Vérité
@@ -741,7 +1052,6 @@ function getRoulette() {
 
     let color = '#667eea';
 
-    // Effets spéciaux selon le type
     switch(challenge.type) {
         case 'jackpot':
         case 'safe':
@@ -763,9 +1073,6 @@ function getRoulette() {
             color = 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
             AudioSystem.sounds.warning();
             VisualEffects.createConfetti(15);
-            break;
-        default:
-            // Sons normaux pour les autres types
             break;
     }
 
@@ -793,7 +1100,6 @@ function getMime() {
 function getHotSeat() {
     const challenge = games.hotSeat.challenges[Math.floor(Math.random() * games.hotSeat.challenges.length)];
 
-    // Effet spécial pour hot seat
     AudioSystem.sounds.warning();
     VisualEffects.flash('rgba(255, 100, 0, 0.3)');
 
@@ -809,7 +1115,6 @@ function getHotSeat() {
 function getDuel() {
     const challenge = games.duel.challenges[Math.floor(Math.random() * games.duel.challenges.length)];
 
-    // Effet spécial pour duel
     AudioSystem.sounds.warning();
 
     return `
@@ -848,7 +1153,6 @@ function getHistoire() {
 function getRegles() {
     const challenge = games.regles.challenges[Math.floor(Math.random() * games.regles.challenges.length)];
 
-    // Effet spécial pour nouvelle règle
     AudioSystem.sounds.success();
     VisualEffects.createParticles(window.innerWidth / 2, window.innerHeight / 2);
 
@@ -864,7 +1168,6 @@ function getRegles() {
 function getCompliment() {
     const challenge = games.compliment.challenges[Math.floor(Math.random() * games.compliment.challenges.length)];
 
-    // Effet spécial pour compliment
     VisualEffects.createConfetti(20);
 
     return `
@@ -879,7 +1182,6 @@ function getCompliment() {
 function getCascade() {
     const challenge = games.cascade.challenges[Math.floor(Math.random() * games.cascade.challenges.length)];
 
-    // Effet spécial pour cascade
     AudioSystem.sounds.warning();
     VisualEffects.flash('rgba(0, 184, 217, 0.3)');
 
@@ -895,7 +1197,6 @@ function getCascade() {
 function getHotSexy() {
     const challenge = games.hotSexy.challenges[Math.floor(Math.random() * games.hotSexy.challenges.length)];
 
-    // Effets spéciaux pour hot & sexy
     AudioSystem.sounds.chug();
     VisualEffects.flash('rgba(255, 20, 147, 0.4)');
     VisualEffects.createParticles(window.innerWidth / 2, window.innerHeight / 2);
@@ -910,247 +1211,19 @@ function getHotSexy() {
 }
 
 // ===================================
-// NOUVELLES FONCTIONNALITÉS
+// MODE MIX
 // ===================================
-
-// ===== SYSTÈME DE JOUEURS =====
-
-function addPlayer() {
-    const input = document.getElementById('playerNameInput');
-    const name = input.value.trim();
-
-    if (name && players.length < 10) {
-        players.push({
-            name: name,
-            color: getRandomColor()
-        });
-
-        input.value = '';
-        updatePlayerList();
-        AudioSystem.sounds.success();
-    }
-}
-
-function getRandomColor() {
-    const colors = [
-        '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8',
-        '#F7DC6F', '#BB8FCE', '#85C1E2', '#F8B739', '#52B788'
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
-}
-
-function updatePlayerList() {
-    const list = document.getElementById('playerList');
-    const btn = document.getElementById('startWithPlayersBtn');
-    const count = document.getElementById('playerCount');
-
-    list.innerHTML = players.map((player, index) => `
-        <div class="player-card" style="background: ${player.color}">
-            <span class="player-name">${player.name}</span>
-            <button class="remove-player" onclick="removePlayer(${index})">×</button>
-        </div>
-    `).join('');
-
-    count.textContent = players.length;
-    btn.disabled = players.length === 0;
-}
-
-function removePlayer(index) {
-    players.splice(index, 1);
-    updatePlayerList();
-    AudioSystem.sounds.click();
-}
-
-function skipPlayerSetup() {
-    players = [];
-    showMenu();
-}
-
-function startWithPlayers() {
-    if (players.length > 0) {
-        showMenu();
-        AudioSystem.sounds.success();
-    }
-}
-
-function showMenu() {
-    document.getElementById('playerSetup').classList.add('hidden');
-    document.getElementById('menu').classList.remove('hidden');
-}
-
-function backToPlayerSetup() {
-    document.getElementById('menu').classList.add('hidden');
-    document.getElementById('playerSetup').classList.remove('hidden');
-    AudioSystem.sounds.click();
-}
-
-function updateCurrentPlayer() {
-    const indicator = document.getElementById('currentPlayerIndicator');
-    const nameSpan = document.getElementById('currentPlayerName');
-
-    if (players.length > 0) {
-        const player = players[currentPlayerIndex];
-        nameSpan.textContent = `C'est au tour de ${player.name} !`;
-        nameSpan.style.color = player.color;
-        indicator.classList.remove('hidden');
-    } else {
-        indicator.classList.add('hidden');
-    }
-}
-
-function nextPlayer() {
-    if (players.length > 0) {
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-        updateCurrentPlayer();
-    }
-}
-
-// ===== HISTORIQUE & ANTI-RÉPÉTITION =====
-
-function addToHistory(challengeContent, gameType) {
-    // Si on navigue dans l'historique et qu'on ajoute un nouveau défi,
-    // on supprime tout ce qui est après
-    if (currentHistoryIndex < challengeHistory.length - 1) {
-        challengeHistory = challengeHistory.slice(0, currentHistoryIndex + 1);
-    }
-
-    challengeHistory.push({
-        content: challengeContent,
-        type: gameType,
-        number: challengeCount
-    });
-
-    currentHistoryIndex = challengeHistory.length - 1;
-    updateHistoryDisplay();
-    updateNavigationButtons();
-}
-
-function updateHistoryDisplay() {
-    const historyList = document.getElementById('historyList');
-    const historyCount = document.getElementById('historyCount');
-
-    historyCount.textContent = challengeHistory.length;
-
-    historyList.innerHTML = challengeHistory.slice().reverse().map((item, index) => `
-        <div class="history-item">
-            <span class="history-number">#${item.number}</span>
-            <span>${item.content}</span>
-        </div>
-    `).join('');
-}
-
-function toggleHistory() {
-    const panel = document.getElementById('historyPanel');
-    panel.classList.toggle('hidden');
-    AudioSystem.sounds.click();
-}
-
-function previousChallenge() {
-    if (currentHistoryIndex > 0) {
-        currentHistoryIndex--;
-        displayChallengeFromHistory();
-        updateNavigationButtons();
-        AudioSystem.sounds.click();
-    }
-}
-
-function displayChallengeFromHistory() {
-    const challenge = challengeHistory[currentHistoryIndex];
-    document.getElementById('gameContent').innerHTML = challenge.content;
-    document.getElementById('counterValue').textContent = challenge.number;
-}
-
-function updateNavigationButtons() {
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    prevBtn.disabled = currentHistoryIndex <= 0;
-    nextBtn.textContent = currentHistoryIndex < challengeHistory.length - 1 ? 'Suivant →' : 'Nouveau défi →';
-}
-
-function getRandomUniqueChallenge(challengesArray) {
-    // Récupérer tous les défis déjà utilisés de ce type
-    const usedChallenges = challengeHistory
-        .filter(item => item.type === currentGame)
-        .map(item => item.content);
-
-    // Trouver les défis non utilisés
-    let availableChallenges = challengesArray.filter(c =>
-        !usedChallenges.some(used => used.includes(c) || c.includes(used))
-    );
-
-    // Si tous les défis ont été utilisés, réinitialiser
-    if (availableChallenges.length === 0) {
-        availableChallenges = [...challengesArray];
-        console.log('Tous les défis ont été utilisés ! Réinitialisation...');
-    }
-
-    // Retourner un défi aléatoire
-    return availableChallenges[Math.floor(Math.random() * availableChallenges.length)];
-}
-
-// ===== SYSTÈME DE DIFFICULTÉ =====
-
-function updateDifficultyFilter() {
-    selectedDifficulty = document.getElementById('difficultySelect').value;
-    AudioSystem.sounds.click();
-}
-
-function getDifficultyLevel(challenge) {
-    // Détermine la difficulté basée sur certains mots-clés
-    const challengeText = typeof challenge === 'string' ? challenge : challenge.text || '';
-    const lowerText = challengeText.toLowerCase();
-
-    // Difficile : cul sec, strip, embrasse, 18+, hardcore
-    if (lowerText.includes('cul sec') || lowerText.includes('strip') ||
-        lowerText.includes('embrasse') || lowerText.includes('18+') ||
-        lowerText.includes('nue') || lowerText.includes('nu ') ||
-        lowerText.includes('body shot') || lowerText.includes('suçon') ||
-        lowerText.match(/\d+ gorgées/) && parseInt(lowerText.match(/\d+/)[0]) >= 6) {
-        return 'hard';
-    }
-
-    // Moyen : défis physiques, distribution moyenne
-    if (lowerText.includes('pompes') || lowerText.includes('squats') ||
-        lowerText.includes('danse') || lowerText.includes('chante') ||
-        lowerText.includes('masse') || lowerText.includes('câlin') ||
-        lowerText.match(/\d+ gorgées/) && parseInt(lowerText.match(/\d+/)[0]) >= 3) {
-        return 'medium';
-    }
-
-    // Facile : le reste
-    return 'easy';
-}
-
-function filterByDifficulty(challenges) {
-    if (selectedDifficulty === 'all') {
-        return challenges;
-    }
-
-    return challenges.filter(challenge => {
-        const difficulty = getDifficultyLevel(challenge);
-        return difficulty === selectedDifficulty;
-    });
-}
-
-// ===== MODE MIX =====
-
 function getMix() {
-    // Liste de toutes les catégories disponibles
     const allCategories = [
         'truthOrDare', 'gage', 'distribution', 'roulette',
         'mime', 'hotSeat', 'duel', 'vote', 'histoire',
         'regles', 'compliment', 'cascade', 'hotSexy'
     ];
 
-    // Choisir une catégorie aléatoire
     const randomCategory = allCategories[Math.floor(Math.random() * allCategories.length)];
-
-    // Temporairement changer le jeu actuel
     const originalGame = currentGame;
     currentGame = randomCategory;
 
-    // Obtenir le défi de cette catégorie
     let content = '';
     switch(randomCategory) {
         case 'truthOrDare': content = getTruthOrDare(); break;
@@ -1168,22 +1241,153 @@ function getMix() {
         case 'hotSexy': content = getHotSexy(); break;
     }
 
-    // Remettre le jeu original
     currentGame = originalGame;
+    mixCount++;
 
-    // Ajouter un badge "MODE MIX"
     const mixBadge = '<div style="background: gold; color: black; padding: 5px 15px; border-radius: 20px; display: inline-block; margin-bottom: 10px; font-weight: bold;">🎲 MODE MIX</div>';
     content = content.replace('<div class="challenge-card', mixBadge + '<div class="challenge-card');
 
     return content;
 }
 
-// Animation au chargement (MODIFIÉ)
+// ===================================
+// ACHIEVEMENTS
+// ===================================
+function loadAchievements() {
+    const saved = localStorage.getItem('achievements');
+    if (saved) {
+        const data = JSON.parse(saved);
+        Object.keys(data).forEach(key => {
+            if (achievements[key]) achievements[key].unlocked = data[key];
+        });
+    }
+    updateAchievementsDisplay();
+}
+
+function saveAchievements() {
+    const data = {};
+    Object.keys(achievements).forEach(key => {
+        data[key] = achievements[key].unlocked;
+    });
+    localStorage.setItem('achievements', JSON.stringify(data));
+}
+
+function checkAchievements() {
+    Object.values(achievements).forEach(ach => {
+        if (!ach.unlocked && ach.condition()) {
+            unlockAchievement(ach.id);
+        }
+    });
+}
+
+function unlockAchievement(id) {
+    const ach = achievements[id];
+    if (ach && !ach.unlocked) {
+        ach.unlocked = true;
+        saveAchievements();
+        showAchievementNotification(ach);
+        updateAchievementsDisplay();
+    }
+}
+
+function showAchievementNotification(ach) {
+    const notif = document.createElement('div');
+    notif.className = 'achievement-notification';
+    notif.innerHTML = `
+        <div class="achievement-icon">${ach.icon}</div>
+        <div class="achievement-info">
+            <div class="achievement-title">Achievement Débloqué !</div>
+            <div class="achievement-name">${ach.name}</div>
+            <div class="achievement-desc">${ach.desc}</div>
+        </div>
+    `;
+    document.body.appendChild(notif);
+
+    setTimeout(() => notif.classList.add('show'), 100);
+    setTimeout(() => {
+        notif.classList.remove('show');
+        setTimeout(() => notif.remove(), 500);
+    }, 4000);
+
+    AudioSystem.sounds.jackpot();
+}
+
+function toggleAchievements() {
+    document.getElementById('achievementsPanel').classList.toggle('hidden');
+    updateAchievementsDisplay();
+}
+
+function updateAchievementsDisplay() {
+    const list = document.getElementById('achievementsList');
+    const unlocked = Object.values(achievements).filter(a => a.unlocked).length;
+
+    document.getElementById('statsTotal').textContent = challengeCount;
+    document.getElementById('statsUnlocked').textContent = unlocked;
+
+    list.innerHTML = Object.values(achievements).map(a => `
+        <div class="achievement-item ${a.unlocked ? 'unlocked' : 'locked'}">
+            <div class="achievement-icon">${a.icon}</div>
+            <div class="achievement-details">
+                <div class="achievement-name">${a.name}</div>
+                <div class="achievement-desc">${a.desc}</div>
+            </div>
+            ${a.unlocked ? '<div class="achievement-check">✓</div>' : ''}
+        </div>
+    `).join('');
+}
+
+// ===================================
+// MUSIQUE
+// ===================================
+function toggleMusic() {
+    document.getElementById('musicPanel').classList.toggle('hidden');
+}
+
+function togglePlayPause() {
+    isPlaying = !isPlaying;
+    const btn = document.getElementById('playPauseBtn');
+    btn.textContent = isPlaying ? '⏸️' : '▶️';
+    updateCurrentTrack();
+}
+
+function nextTrack() {
+    if (currentPlaylist !== 'none') {
+        currentTrackIndex = (currentTrackIndex + 1) % playlists[currentPlaylist].length;
+        updateCurrentTrack();
+    }
+}
+
+function prevTrack() {
+    if (currentPlaylist !== 'none') {
+        currentTrackIndex = (currentTrackIndex - 1 + playlists[currentPlaylist].length) % playlists[currentPlaylist].length;
+        updateCurrentTrack();
+    }
+}
+
+function changePlaylist() {
+    currentPlaylist = document.getElementById('playlistSelect').value;
+    currentTrackIndex = 0;
+    updateCurrentTrack();
+}
+
+function updateCurrentTrack() {
+    const trackSpan = document.getElementById('currentTrack');
+    if (currentPlaylist === 'none' || !isPlaying) {
+        trackSpan.textContent = 'Aucune musique';
+    } else {
+        trackSpan.textContent = playlists[currentPlaylist][currentTrackIndex];
+    }
+}
+
+// ===================================
+// INITIALISATION
+// ===================================
 window.addEventListener('load', () => {
     initializeGames();
+    loadAchievements();
     console.log('Jeux de soirée chargés ! 🍻');
 
-    // Ajouter des effets sonores sur les boutons
+    // Effets sonores sur les boutons
     const buttons = document.querySelectorAll('.game-btn, .next-btn, .back-btn');
     buttons.forEach(button => {
         button.addEventListener('mouseenter', () => {
@@ -1191,14 +1395,17 @@ window.addEventListener('load', () => {
         });
     });
 
-    // Support de la touche Enter pour ajouter un joueur
+    // Support Enter pour ajouter joueur/équipe
     const playerInput = document.getElementById('playerNameInput');
-    playerInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            addPlayer();
-        }
+    const teamInput = document.getElementById('teamNameInput');
+
+    playerInput?.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addPlayer();
     });
 
-    // Message de bienvenue
+    teamInput?.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addTeam();
+    });
+
     showNotification('👥 Ajoutez des joueurs ou cliquez sur "Passer" !');
 });
