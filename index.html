@@ -3,29 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeux de Soirée - Alcool</title>
+    <title>Jeux de Soirée - Ultimate Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Bouton de contrôle du son -->
-    <button id="soundToggle" class="sound-toggle" onclick="toggleSound()" title="Activer/Désactiver le son">
-        🔊
-    </button>
+    <!-- Boutons de contrôle en haut -->
+    <div class="top-controls">
+        <button id="soundToggle" class="control-btn" onclick="toggleSound()" title="Son">
+            🔊
+        </button>
+        <button id="achievementsBtn" class="control-btn" onclick="toggleAchievements()" title="Achievements">
+            🏆
+        </button>
+        <button id="musicBtn" class="control-btn" onclick="toggleMusic()" title="Musique">
+            🎵
+        </button>
+    </div>
 
     <!-- Compteur de défis -->
     <div id="challengeCounter" class="challenge-counter hidden">
         Défi #<span id="counterValue">0</span>
     </div>
 
+    <!-- Indicateur du joueur/équipe actuel -->
+    <div id="currentPlayerIndicator" class="current-player-indicator hidden">
+        <span id="currentPlayerName"></span>
+    </div>
+
+    <!-- Panel des Achievements -->
+    <div id="achievementsPanel" class="achievements-panel hidden">
+        <div class="panel-header">
+            <h3>🏆 Achievements</h3>
+            <button class="close-btn" onclick="toggleAchievements()">×</button>
+        </div>
+        <div id="achievementsList" class="achievements-list">
+            <!-- Les achievements seront ajoutés ici -->
+        </div>
+        <div class="achievements-stats">
+            <p>Défis complétés: <span id="statsTotal">0</span></p>
+            <p>Achievements débloqués: <span id="statsUnlocked">0</span>/10</p>
+        </div>
+    </div>
+
+    <!-- Panel de musique -->
+    <div id="musicPanel" class="music-panel hidden">
+        <div class="panel-header">
+            <h3>🎵 Playlist</h3>
+            <button class="close-btn" onclick="toggleMusic()">×</button>
+        </div>
+        <div class="music-player">
+            <div class="now-playing">
+                <p>🎧 <span id="currentTrack">Aucune musique</span></p>
+            </div>
+            <div class="music-controls">
+                <button onclick="prevTrack()">⏮️</button>
+                <button id="playPauseBtn" onclick="togglePlayPause()">▶️</button>
+                <button onclick="nextTrack()">⏭️</button>
+            </div>
+            <div class="playlist-selection">
+                <label>Ambiance:</label>
+                <select id="playlistSelect" onchange="changePlaylist()">
+                    <option value="none">Aucune</option>
+                    <option value="party">🎉 Party</option>
+                    <option value="chill">😌 Chill</option>
+                    <option value="intense">🔥 Intense</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <header>
-            <h1>🍻 Jeux de Soirée 🍻</h1>
+            <h1>🍻 Jeux de Soirée 🎮</h1>
+            <p class="subtitle">Ultimate Edition avec 7 modes de jeu !</p>
         </header>
 
+        <!-- Écran de configuration des joueurs -->
+        <div id="playerSetup" class="player-setup">
+            <h2>👥 Configuration</h2>
+
+            <!-- Toggle Mode Équipe -->
+            <div class="team-mode-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="teamModeCheckbox" onchange="toggleTeamMode()">
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">Mode Équipe</span>
+            </div>
+
+            <!-- Section Joueurs -->
+            <div id="playersSection">
+                <p class="setup-subtitle">Ajoutez les joueurs (2-10)</p>
+                <div class="player-input-area">
+                    <input type="text" id="playerNameInput" placeholder="Nom du joueur" maxlength="20">
+                    <button class="add-btn" onclick="addPlayer()">➕</button>
+                </div>
+                <div id="playerList" class="player-list"></div>
+            </div>
+
+            <!-- Section Équipes (cachée par défaut) -->
+            <div id="teamsSection" class="hidden">
+                <p class="setup-subtitle">Créez 2-4 équipes</p>
+                <div class="team-input-area">
+                    <input type="text" id="teamNameInput" placeholder="Nom de l'équipe" maxlength="20">
+                    <button class="add-btn" onclick="addTeam()">➕</button>
+                </div>
+                <div id="teamsList" class="teams-list"></div>
+            </div>
+
+            <div class="setup-actions">
+                <button class="skip-btn" onclick="skipSetup()">Passer ⏭️</button>
+                <button class="start-btn" id="startBtn" onclick="startWithConfig()" disabled>
+                    Commencer 🎮
+                </button>
+            </div>
+        </div>
+
         <!-- Menu de sélection des jeux -->
-        <div id="menu" class="menu">
-            <h2>Choisissez votre jeu</h2>
+        <div id="menu" class="menu hidden">
+            <button class="back-btn" onclick="backToSetup()">← Config</button>
+
+            <!-- Scores des équipes (si mode équipe actif) -->
+            <div id="teamScores" class="team-scores hidden">
+                <h3>📊 Scores des Équipes</h3>
+                <div id="scoresList"></div>
+            </div>
+
+            <h2>Choisissez votre mode</h2>
+
+            <!-- Filtre de difficulté -->
+            <div class="difficulty-filter">
+                <label>🎯 Difficulté:</label>
+                <select id="difficultySelect" onchange="updateDifficulty()">
+                    <option value="all">Toutes</option>
+                    <option value="easy">⭐ Facile</option>
+                    <option value="medium">⭐⭐ Moyen</option>
+                    <option value="hard">⭐⭐⭐ Difficile</option>
+                </select>
+            </div>
+
             <div class="game-buttons">
+                <!-- Mode Mix en premier -->
+                <button class="game-btn special-mix" onclick="startGame('mix')">
+                    <span class="icon">🎲</span>
+                    <span>MODE MIX<br><small>(Toutes catégories)</small></span>
+                </button>
+
                 <button class="game-btn" onclick="startGame('truthOrDare')">
                     <span class="icon">🎭</span>
                     <span>Action ou Vérité</span>
@@ -36,36 +159,90 @@
                 </button>
                 <button class="game-btn" onclick="startGame('distribution')">
                     <span class="icon">🍺</span>
-                    <span>Distribution de Gorgées</span>
+                    <span>Distribution</span>
                 </button>
                 <button class="game-btn" onclick="startGame('roulette')">
                     <span class="icon">🎰</span>
                     <span>Roulette Russe</span>
+                </button>
+                <button class="game-btn" onclick="startGame('mime')">
+                    <span class="icon">🎬</span>
+                    <span>Mime & Charades</span>
+                </button>
+                <button class="game-btn" onclick="startGame('hotSeat')">
+                    <span class="icon">🔥</span>
+                    <span>Hot Seat</span>
+                </button>
+                <button class="game-btn" onclick="startGame('duel')">
+                    <span class="icon">⚔️</span>
+                    <span>Duel</span>
+                </button>
+                <button class="game-btn" onclick="startGame('vote')">
+                    <span class="icon">🗳️</span>
+                    <span>Vote</span>
+                </button>
+                <button class="game-btn" onclick="startGame('histoire')">
+                    <span class="icon">📖</span>
+                    <span>Histoire</span>
+                </button>
+                <button class="game-btn" onclick="startGame('regles')">
+                    <span class="icon">📜</span>
+                    <span>Règles</span>
+                </button>
+                <button class="game-btn" onclick="startGame('compliment')">
+                    <span class="icon">💝</span>
+                    <span>Compliments</span>
+                </button>
+                <button class="game-btn" onclick="startGame('cascade')">
+                    <span class="icon">🌊</span>
+                    <span>Cascade</span>
+                </button>
+                <button class="game-btn" onclick="startGame('hotSexy')">
+                    <span class="icon">🔥💋</span>
+                    <span>Hot & Sexy<br><small>(18+)</small></span>
                 </button>
             </div>
         </div>
 
         <!-- Zone de jeu -->
         <div id="gameArea" class="game-area hidden">
-            <button class="back-btn" onclick="backToMenu()">← Retour au menu</button>
+            <button class="back-btn" onclick="backToMenu()">← Menu</button>
 
             <div id="gameContent" class="game-content">
                 <!-- Le contenu du jeu sera inséré ici -->
             </div>
 
             <div class="game-controls">
-                <button id="nextBtn" class="next-btn" onclick="nextChallenge()">
-                    Suivant
+                <button id="prevBtn" class="prev-btn" onclick="previousChallenge()" disabled>
+                    ← Précédent
                 </button>
+                <button id="nextBtn" class="next-btn" onclick="nextChallenge()">
+                    Suivant →
+                </button>
+            </div>
+
+            <!-- Historique -->
+            <div class="history-section">
+                <button class="history-toggle-btn" onclick="toggleHistory()">
+                    📜 Historique (<span id="historyCount">0</span>)
+                </button>
+                <div id="historyPanel" class="history-panel hidden">
+                    <h4>Historique des défis</h4>
+                    <div id="historyList"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>⚠️ À consommer avec modération - Ne buvez pas si vous conduisez</p>
+        <p>⚠️ À consommer avec modération</p>
+        <p class="version">v2.0 Ultimate Edition - 7 Modes | By Claude</p>
     </footer>
 
+    <!-- Scripts -->
+    <script src="games-data.js"></script>
     <script src="effects.js"></script>
     <script src="app.js"></script>
+    <script src="ultimate-features.js"></script>
 </body>
 </html>

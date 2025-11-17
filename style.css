@@ -517,6 +517,619 @@ body::before {
     }
 }
 
+/* ===================================
+   ULTIMATE EDITION - NOUVEAUX STYLES
+   =================================== */
+
+/* Top Controls */
+.top-controls {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Subtitle */
+.subtitle {
+    color: #aaa;
+    font-size: 0.9em;
+    margin-top: -10px;
+}
+
+.version {
+    font-size: 0.8em;
+    color: #666;
+}
+
+/* Player Setup */
+.player-setup {
+    padding: 40px 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.player-setup h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.team-mode-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.toggle-label {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.setup-subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+.player-input-area, .team-input-area {
+    display: flex;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto 20px;
+}
+
+.player-input-area input, .team-input-area input {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid #667eea;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 1em;
+}
+
+.player-input-area input:focus, .team-input-area input:focus {
+    outline: none;
+    border-color: #764ba2;
+}
+
+.add-btn {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(56, 239, 125, 0.4);
+}
+
+.player-list, .teams-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+    min-height: 50px;
+}
+
+.player-card, .team-card {
+    padding: 10px 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideInUp 0.3s ease;
+}
+
+.player-card button, .team-card button {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.setup-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.skip-btn, .start-btn {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.skip-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.start-btn {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.start-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Team Scores */
+.team-scores {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.team-scores h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#scoresList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.team-score {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.team-score-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.team-score-points {
+    font-size: 2em;
+    color: #667eea;
+}
+
+/* Difficulty Filter */
+.difficulty-filter {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.difficulty-filter label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#difficultySelect {
+    padding: 8px 15px;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+}
+
+/* Special Mix Button */
+.special-mix {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #ffd89b 100%) !important;
+    border: 3px solid gold !important;
+    animation: rainbow 3s infinite, pulse 2s infinite;
+}
+
+@keyframes rainbow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Current Player Indicator */
+.current-player-indicator {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 12px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+    z-index: 999;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Navigation Buttons */
+.game-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.prev-btn {
+    padding: 12px 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.prev-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-3px);
+}
+
+.prev-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* History */
+.history-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.history-toggle-btn {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.history-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.history-panel {
+    margin-top: 15px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.history-panel h4 {
+    margin-bottom: 10px;
+    color: #667eea;
+}
+
+#historyList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.history-item {
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid #667eea;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+/* Achievements Panel */
+.achievements-panel, .music-panel {
+    position: fixed;
+    right: -400px;
+    top: 70px;
+    width: 380px;
+    max-height: 80vh;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transition: right 0.4s ease;
+    overflow: hidden;
+}
+
+.achievements-panel:not(.hidden), .music-panel:not(.hidden) {
+    right: 20px;
+}
+
+.panel-header {
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-header h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 0, 0, 0.6);
+    transform: rotate(90deg);
+}
+
+.achievements-list {
+    padding: 20px;
+    max-height: calc(80vh - 150px);
+    overflow-y: auto;
+}
+
+.achievement-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.achievement-item.unlocked {
+    background: rgba(56, 239, 125, 0.1);
+    border: 2px solid rgba(56, 239, 125, 0.3);
+}
+
+.achievement-item.locked {
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
+
+.achievement-icon {
+    font-size: 2.5em;
+}
+
+.achievement-details {
+    flex: 1;
+}
+
+.achievement-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.achievement-desc {
+    font-size: 0.85em;
+    color: #aaa;
+}
+
+.achievement-check {
+    font-size: 1.5em;
+    color: #38ef7d;
+}
+
+.achievements-stats {
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.achievements-stats p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+/* Achievement Notification */
+.achievement-notification {
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(245, 87, 108, 0.6);
+    z-index: 2000;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    min-width: 300px;
+    transition: top 0.5s ease;
+}
+
+.achievement-notification.show {
+    top: 100px;
+}
+
+.achievement-notification .achievement-icon {
+    font-size: 3em;
+}
+
+.achievement-title {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.achievement-notification .achievement-name {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.achievement-notification .achievement-desc {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Music Panel */
+.music-player {
+    padding: 20px;
+}
+
+.now-playing {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.music-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.music-controls button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.music-controls button:hover {
+    transform: scale(1.1);
+}
+
+.playlist-selection {
+    text-align: center;
+}
+
+.playlist-selection select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     header h1 {

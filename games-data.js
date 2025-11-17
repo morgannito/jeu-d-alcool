@@ -947,5 +947,744 @@ const gamesData = {
     gage: {
         name: "Gage de Con",
         // Continué dans le prochain fichier pour ne pas dépasser la limite...
+    },
+
+    // Nouvelles catégories ajoutées
+    mime: {
+        name: "Mime & Charades",
+        challenges: [
+            // Mimes d'animaux
+            "Mime un chat qui se fait caresser",
+            "Mime un chien qui veut sortir",
+            "Mime un pingouin qui glisse",
+            "Mime une girafe qui boit",
+            "Mime un singe qui mange une banane",
+            "Mime un serpent qui rampe",
+            "Mime un kangourou qui saute",
+            "Mime un oiseau qui construit son nid",
+            "Mime un éléphant qui se douche",
+            "Mime un poisson qui nage",
+
+            // Mimes d'actions quotidiennes
+            "Mime quelqu'un qui se brosse les dents bourré",
+            "Mime quelqu'un qui essaie de marcher avec des talons",
+            "Mime quelqu'un qui reçoit un texto de son ex",
+            "Mime quelqu'un qui voit son crush",
+            "Mime quelqu'un qui essaie de rester éveillé",
+            "Mime quelqu'un qui a oublié son mot de passe",
+            "Mime quelqu'un qui essaie de paraître sobre",
+            "Mime quelqu'un qui prend un selfie parfait",
+            "Mime quelqu'un qui danse seul dans sa chambre",
+            "Mime quelqu'un qui reçoit de mauvaises nouvelles",
+
+            // Mimes de métiers
+            "Mime un coiffeur en action",
+            "Mime un serveur maladroit",
+            "Mime un DJ en plein set",
+            "Mime un prof ennuyeux",
+            "Mime un médecin qui examine",
+            "Mime un policier qui poursuit",
+            "Mime un pompier qui sauve",
+            "Mime un chef cuisinier stressé",
+            "Mime un artiste qui peint",
+            "Mime un danseur de ballet",
+
+            // Mimes de célébrités
+            "Mime une diva qui fait un caprice",
+            "Mime un rappeur en concert",
+            "Mime un mannequin sur un podium",
+            "Mime une star qui signe des autographes",
+            "Mime un influenceur qui fait une vidéo",
+            "Mime un chanteur d'opéra",
+            "Mime un acteur qui reçoit un Oscar",
+            "Mime une rock star qui détruit sa guitare",
+            "Mime un sportif qui célèbre",
+            "Mime un magicien qui rate son tour",
+
+            // Mimes de situations embarrassantes
+            "Mime quelqu'un qui pète en public",
+            "Mime quelqu'un qui glisse sur une peau de banane",
+            "Mime quelqu'un dont le pantalon craque",
+            "Mime quelqu'un qui se fait surprendre",
+            "Mime quelqu'un qui trébuche et fait semblant de rien",
+            "Mime quelqu'un qui a oublié qu'il est en visio",
+            "Mime quelqu'un qui envoie un message à la mauvaise personne",
+            "Mime quelqu'un qui se fait larguer",
+            "Mime quelqu'un qui vomit discrètement",
+            "Mime quelqu'un qui essaie de fuir une conversation",
+
+            // Charades combinées
+            "Mime un film d'horreur célèbre (le groupe devine)",
+            "Mime une chanson connue (le groupe devine)",
+            "Mime un dessin animé (le groupe devine)",
+            "Mime une série TV populaire (le groupe devine)",
+            "Mime un jeu vidéo (le groupe devine)",
+            "Mime une marque connue (le groupe devine)",
+            "Mime un pays (le groupe devine)",
+            "Mime une célébrité française (le groupe devine)",
+            "Mime un sport (le groupe devine)",
+            "Mime une application smartphone (le groupe devine)"
+        ]
+    },
+
+    hotSeat: {
+        name: "Hot Seat",
+        challenges: [
+            // Le siège éjectable - 5 questions rapides
+            "Le groupe pose 5 questions rapides - tu dois répondre en moins de 5 secondes chacune",
+            "Réponds OUI ou NON seulement : Le groupe te pose 10 questions pièges",
+            "Jeu du NI OUI NI NON : Le groupe t'interroge pendant 1 minute, tu ne dois dire ni oui ni non",
+            "Avoue 3 secrets en 30 secondes ou bois 6 gorgées",
+            "Le groupe vote : Quelle est ta qualité ? Ta pire défaut ? Pourquoi tu es là ?",
+
+            // Questions embarrassantes en rafale
+            "Nomme 5 personnes que tu as embrassées ou bois 5 gorgées",
+            "Cite 3 mensonges que tu as dits cette semaine ou distribue 6 gorgées",
+            "Avoue 3 choses que tu caches à tes parents",
+            "Nomme toutes les personnes que tu trouves sexy ici ou bois 5 gorgées",
+            "Révèle 3 de tes recherches Google les plus bizarres",
+
+            // Hot seat - tout le monde participe
+            "Chaque personne te pose une question embarrassante - tu dois répondre à toutes",
+            "Tour de table : tout le monde dit ce qu'il pense vraiment de toi",
+            "Chacun devine un secret sur toi - avoue si c'est vrai",
+            "Le groupe vote pour ton pire défaut - tu dois l'assumer et expliquer",
+            "Tout le monde te donne un conseil - tu expliques pourquoi tu ne le suis pas",
+
+            // Défis rapides en série
+            "Fais 3 imitations de personnes ici en 30 secondes",
+            "Dis un compliment et un défaut à chaque personne en 1 minute",
+            "Raconte 3 histoires embarrassantes en 2 minutes",
+            "Avoue à qui tu as pensé en dernier de façon romantique",
+            "Explique tes 3 plus gros regrets en 1 minute",
+
+            // Vérités intenses
+            "Classe les personnes ici du plus au moins attirant - explique pourquoi",
+            "Si tu devais embrasser 3 personnes ici, qui et pourquoi ?",
+            "Révèle ce que tu penses vraiment de chacun - sois honnête",
+            "Avoue tes 3 plus gros mensonges de la soirée",
+            "Dis qui tu éviterais dans cette pièce et pourquoi",
+
+            // Hot seat interactif
+            "Le groupe te donne 3 défis - tu dois en choisir un et le faire",
+            "Tout le monde écrit une question secrète - tu pioches et réponds",
+            "Le groupe décide : action ou vérité ? Tu n'as pas le choix",
+            "Chacun te donne un gage - tu dois tous les faire en 2 minutes",
+            "Le groupe vote pour ton secret le plus dark - tu dois le révéler"
+        ]
+    },
+
+    duel: {
+        name: "Duel",
+        challenges: [
+            // Duels physiques
+            "Bras de fer - le perdant boit 4 gorgées",
+            "Concours de pompes - le premier à 20 gagne, l'autre boit 5 gorgées",
+            "Concours de squats - le premier à abandonner boit 4 gorgées",
+            "Battle de danse - le groupe vote, le perdant boit 3 gorgées",
+            "Concours de gainage - le premier qui lâche boit 5 gorgées",
+            "Battle de moonwalk - le pire boit 2 gorgées",
+            "Concours de flexibilité - qui fait le meilleur grand écart ? Le perdant boit 4 gorgées",
+            "Pierre-feuille-ciseaux en 5 manches - le perdant boit 6 gorgées",
+            "Course à cloche-pied - le dernier boit 3 gorgées",
+            "Concours d'équilibre sur une jambe - le premier qui pose le pied boit 3 gorgées",
+
+            // Duels de talent
+            "Battle de rap - le groupe vote, le perdant boit 4 gorgées",
+            "Concours de beatbox - le pire boit 3 gorgées",
+            "Battle de chant - le groupe juge, le perdant boit 4 gorgées",
+            "Concours d'imitations - le moins drôle boit 3 gorgées",
+            "Battle de blagues - le moins drôle boit 5 gorgées",
+            "Concours de grimaces - le groupe vote, le perdant boit 2 gorgées",
+            "Battle de freestyle - le pire boit 4 gorgées",
+            "Concours de stands up - le moins drôle boit 6 gorgées",
+            "Battle de beatbox - le perdant distribue 4 gorgées",
+            "Concours de mime - le groupe décide, le perdant boit 3 gorgées",
+
+            // Duels intellectuels
+            "Quiz culture G - 10 questions, le perdant boit 5 gorgées",
+            "Concours de calcul mental - le plus lent boit 3 gorgées",
+            "Battle d'orthographe - le premier qui se trompe boit 4 gorgées",
+            "Concours de capitales - le premier à 10 gagne, l'autre boit 5 gorgées",
+            "Battle de répliques de films - le premier qui sèche boit 3 gorgées",
+            "Concours de conjugaison - le perdant boit 4 gorgées",
+            "Réciter l'alphabet à l'envers - le plus lent boit 3 gorgées",
+            "Compter à rebours de 100 par 7 - le premier qui se trompe boit 5 gorgées",
+            "Battle de paroles de chansons - le premier qui bloque boit 4 gorgées",
+            "Concours de noms de pays - le premier à 20 gagne, l'autre boit 5 gorgées",
+
+            // Duels de regard et résistance
+            "Battle de regard - le premier qui rit boit 3 gorgées",
+            "Concours de sérieux - le premier qui sourit boit 2 gorgées",
+            "Battle de chatouilles - le premier qui rit boit 4 gorgées",
+            "Concours 'Ni oui ni non' - le premier qui dit oui/non boit 5 gorgées",
+            "Battle de statues - le premier qui bouge boit 3 gorgées",
+
+            // Duels alcoolisés
+            "Concours de cul sec - le plus lent boit 3 gorgées supplémentaires",
+            "Battle de shots - le premier à 3 gagne, l'autre distribue 6 gorgées",
+            "Concours de résistance - buvez en même temps, le premier qui s'arrête perd",
+            "Russian Beer Pong improvisé - le perdant boit tout",
+            "Concours de vitesse - videz vos verres, le plus lent boit encore 4 gorgées",
+
+            // Duels créatifs
+            "Inventer une histoire - le groupe vote la meilleure, le perdant boit 3 gorgées",
+            "Battle de dessin les yeux fermés - le pire boit 3 gorgées",
+            "Concours de poésie improvisée - le moins romantique boit 4 gorgées",
+            "Battle de compliments - le premier à court d'idées boit 3 gorgées",
+            "Concours de tchatche - draguez la même personne, elle choisit le gagnant, le perdant boit 5 gorgées",
+
+            // Duels de chance
+            "Pile ou face en 5 manches - le perdant boit 5 gorgées",
+            "Dés : Le plus petit score boit la différence en gorgées",
+            "Tirage au sort - le perdant fait un gage choisi par le gagnant",
+            "Roulette de bouteille - elle désigne le perdant qui boit 4 gorgées",
+            "Le groupe choisit secrètement le gagnant - le perdant boit 6 gorgées"
+        ]
+    },
+
+    vote: {
+        name: "Vote",
+        challenges: [
+            // Votes sur les qualités
+            "Qui est le/la plus drôle ? - Cette personne distribue 5 gorgées",
+            "Qui est le/la plus sexy ? - Les autres boivent 2 gorgées",
+            "Qui est le/la plus intelligent(e) ? - Cette personne choisit qui boit 4 gorgées",
+            "Qui est le/la plus fou/folle ? - Cette personne fait un défi de son choix ou boit 3 gorgées",
+            "Qui est le/la plus timide ? - Cette personne doit faire un truc fou ou boire 4 gorgées",
+
+            // Votes sur les défauts
+            "Qui est le/la plus bourré(e) ? - Cette personne boit 4 gorgées",
+            "Qui est le/la plus bavard(e) ? - Cette personne reste silencieuse 2 tours ou boit 3 gorgées",
+            "Qui est le/la plus menteur/menteuse ? - Cette personne avoue un mensonge ou boit 5 gorgées",
+            "Qui est le/la plus égoïste ? - Cette personne offre 1 shot à quelqu'un ou boit 4 gorgées",
+            "Qui est le/la plus jaloux/jalouse ? - Cette personne avoue de qui ou boit 3 gorgées",
+
+            // Votes sur les comportements
+            "Qui a le plus de chances de finir la nuit en boîte de nuit ? - Boit 2 gorgées",
+            "Qui a le plus de chances de vomir ce soir ? - Boit 3 gorgées",
+            "Qui a le plus de chances de se réveiller dans un endroit bizarre ? - Boit 3 gorgées",
+            "Qui a le plus de chances d'envoyer un texto à son ex ce soir ? - Boit 4 gorgées et donne son téléphone",
+            "Qui a le plus de chances de faire quelque chose de stupide ce soir ? - Boit 3 gorgées",
+
+            // Votes relationnels
+            "Qui ferait le meilleur couple ici ? - Ils boivent 3 gorgées ensemble",
+            "Qui se déteste secrètement ? - Ils doivent s'expliquer ou boire 5 gorgées chacun",
+            "Qui a déjà eu un crush sur quelqu'un ici ? - Le groupe devine, si c'est vrai tu bois 5 gorgées",
+            "Qui embrasse le mieux selon vous ? - Cette personne choisit quelqu'un à embrasser ou distribue 6 gorgées",
+            "Qui est le plus friend-zoned ? - Cette personne avoue par qui ou boit 4 gorgées",
+
+            // Votes sur le passé
+            "Qui a la pire histoire de rupture ? - Raconte-la ou bois 5 gorgées",
+            "Qui a fait la pire connerie d'ado ? - Raconte ou bois 4 gorgées",
+            "Qui a le passé le plus dark ? - Révèle quelque chose ou bois 6 gorgées",
+            "Qui a le pire casier judiciaire (même imaginaire) ? - Avoue ou bois 4 gorgées",
+            "Qui a eu le premier date le plus nul ? - Raconte ou bois 3 gorgées",
+
+            // Votes extrêmes
+            "Qui survivrait le moins longtemps dans la nature ? - Boit 3 gorgées",
+            "Qui deviendrait fou en premier dans une apocalypse zombie ? - Boit 4 gorgées",
+            "Qui serait le premier à trahir le groupe ? - Doit se justifier ou boire 5 gorgées",
+            "Qui a le plus de secrets inavouables ? - Révèle-en un ou bois 6 gorgées",
+            "Qui finirait en prison en premier ? - Explique pourquoi ou bois 4 gorgées",
+
+            // Votes physiques
+            "Qui a le plus beau sourire ? - Distribue 3 gorgées",
+            "Qui a les plus beaux yeux ? - Choisit qui boit 4 gorgées",
+            "Qui est le/la mieux habillé(e) ? - Les autres boivent 2 gorgées",
+            "Qui a le meilleur style ? - Distribue 4 gorgées",
+            "Qui a le rire le plus contagieux ? - Fait rire quelqu'un ou boit 3 gorgées",
+
+            // Votes de groupe
+            "Vote : Qui devrait boire ? - La personne avec le plus de votes boit 5 gorgées",
+            "Vote : Qui mérite un gage ? - Le groupe décide du gage",
+            "Vote : Qui doit embrasser quelqu'un ? - Le groupe choisit qui",
+            "Vote : Qui est le MVP de la soirée ? - Distribue 10 gorgées comme il veut",
+            "Vote : Qui devrait partir en premier ? - Cette personne distribue 5 gorgées",
+
+            // Votes secrets
+            "Vote secret : Qui est le plus hypocrite ? - Révélation, cette personne boit 4 gorgées",
+            "Vote secret : Qui vous énerve le plus ? - Révélation, justification ou 5 gorgées",
+            "Vote secret : Qui voudriez-vous embrasser ? - Révélation publique",
+            "Vote secret : De qui êtes-vous jaloux ? - Le groupe devine, révélation finale",
+            "Vote secret : Qui ne devrait pas être là ? - Révélation, explications nécessaires"
+        ]
+    },
+
+    histoire: {
+        name: "Histoire à Raconter",
+        challenges: [
+            // Histoires personnelles
+            "Raconte ton pire date en détails - si tu fais rire, distribue 5 gorgées, sinon bois 3",
+            "Raconte ta pire cuite - le groupe vote si c'est vrai, sinon bois 4 gorgées",
+            "Raconte comment tu as rencontré ton ex - le plus cringe distribue 3 gorgées",
+            "Raconte ton moment le plus embarrassant à l'école",
+            "Raconte une fois où tu t'es fait attraper en flagrant délit",
+            "Raconte ta pire soirée de ta vie",
+            "Raconte ton premier baiser en détails",
+            "Raconte une fois où tu as menti et tu t'es fait griller",
+            "Raconte ton fail le plus épique en public",
+            "Raconte une histoire où tu as eu très honte",
+
+            // Histoires inventées
+            "Invente une histoire d'horreur - si tu fais peur, distribue 4 gorgées",
+            "Invente une histoire romantique sur 2 personnes ici - elles boivent 3 gorgées",
+            "Invente un complot impliquant tout le monde ici",
+            "Raconte l'avenir dans 10 ans de la personne à ta gauche",
+            "Invente une légende urbaine sur cette soirée",
+            "Crée une histoire de super-héros avec les gens présents",
+            "Invente une série Netflix sur le groupe",
+            "Raconte le scénario d'un film d'horreur avec vous tous",
+            "Invente l'origine secrète de quelqu'un ici",
+            "Crée une prophétie sur la fin de soirée",
+
+            // Histoires collaboratives
+            "Commence une histoire - chacun ajoute une phrase - la plus drôle gagne et distribue 5 gorgées",
+            "Histoire à continuer : Commence par 'Il était une fois...' - le suivant continue",
+            "Histoire dont tu es le héros : le groupe décide de tes actions",
+            "Raconte une histoire, le groupe l'interrompt avec 'Et puis?' jusqu'à ce que tu bloques",
+            "Histoire collective : chacun dit un mot - doit faire sens - le premier qui bloque boit",
+
+            // Histoires vraies ou fausses
+            "Raconte 3 histoires : 2 vraies, 1 fausse - le groupe devine",
+            "Raconte quelque chose de fou - le groupe vote si c'est vrai - les perdants boivent",
+            "2 vérités 1 mensonge sur ton ex - le groupe devine",
+            "Raconte ton histoire la plus incroyable - si personne n'y croit tu bois 5 gorgées",
+            "Histoire vraie ou fake ? Le groupe parie des gorgées",
+
+            // Histoires de groupe
+            "Raconte une histoire sur quelqu'un ici (vraie) - cette personne confirme ou tu bois 4 gorgées",
+            "Raconte un souvenir collectif - les autres complètent",
+            "Décris comment tu imagines la vie secrète de chacun",
+            "Raconte la pire chose que vous ayez faite ensemble",
+            "Histoire de cette soirée vue du futur - imagine dans 10 ans",
+
+            // Histoires thématiques
+            "Raconte une histoire de fantôme que tu connais",
+            "Histoire la plus chelou de ta famille",
+            "Raconte une légende de ton pays/région",
+            "Histoire la plus bizarre que tu aies vécue en voyage",
+            "Raconte un rêve bizarre que tu as fait",
+            "Histoire paranormale que tu as vécue ou qu'on t'a racontée",
+            "Raconte ton histoire de soirée alcoolisée la plus folle",
+            "Histoire d'un mensonge qui est allé trop loin",
+            "Raconte comment tu as gâché quelque chose d'important",
+            "Histoire de la fois où tu as failli te faire choper",
+
+            // Histoires interactives
+            "Raconte une histoire en mimant - si le groupe devine tu distribues 6 gorgées",
+            "Raconte une histoire avec des accents différents pour chaque personnage",
+            "Histoire contée en chantant - si tu arrives au bout distribue 5 gorgées",
+            "Raconte une histoire triste - le premier qui pleure distribue 3 gorgées",
+            "Histoire à suspense - le groupe doit deviner la fin",
+
+            // Confessions
+            "Raconte un secret que tu n'as jamais dit à personne",
+            "Histoire de ta plus grosse trahison",
+            "Raconte quelque chose dont tu as honte depuis longtemps",
+            "Histoire de ton plus gros regret en détails",
+            "Raconte comment tu as fait du mal à quelqu'un involontairement"
+        ]
+    },
+
+    regles: {
+        name: "Nouvelles Règles",
+        challenges: [
+            // Règles de parole
+            "Nouvelle règle : Interdiction de dire 'je' pendant 3 tours - sinon 2 gorgées",
+            "Nouvelle règle : Parlez uniquement en questions - sinon 2 gorgées",
+            "Nouvelle règle : Interdiction de pointer du doigt - sinon 3 gorgées",
+            "Nouvelle règle : Interdiction de dire les prénoms - sinon 2 gorgées",
+            "Nouvelle règle : Ajoutez 'dans ton cul' à la fin de chaque phrase - sinon 2 gorgées",
+            "Nouvelle règle : Interdiction de rire - le premier qui rit boit 3 gorgées",
+            "Nouvelle règle : Parlez uniquement en rimes - sinon 3 gorgées",
+            "Nouvelle règle : Interdiction de dire 'oui' ou 'non' - sinon 2 gorgées",
+            "Nouvelle règle : Appelez-vous par des surnoms uniquement - sinon 2 gorgées",
+            "Nouvelle règle : Parlez comme des pirates - sinon 2 gorgées",
+
+            // Règles gestuelles
+            "Nouvelle règle : Touchez-vous le nez quand vous buvez - sinon 2 gorgées supplémentaires",
+            "Nouvelle règle : Levez la main avant de parler - sinon 2 gorgées",
+            "Nouvelle règle : Claquement de doigts avant et après chaque phrase - sinon 2 gorgées",
+            "Nouvelle règle : Debout pour boire - sinon 3 gorgées",
+            "Nouvelle règle : Trinquez avec tout le monde avant de boire - sinon 2 gorgées",
+            "Nouvelle règle : Tenez votre verre de la main gauche uniquement - sinon 2 gorgées",
+            "Nouvelle règle : Faites une révérence avant de boire - sinon 2 gorgées",
+            "Nouvelle règle : Fermez les yeux quand vous buvez - sinon 2 gorgées",
+            "Nouvelle règle : Applaudissez quand quelqu'un boit - sinon tout le monde boit 1 gorgée",
+            "Nouvelle règle : Faites un tour sur vous-même avant de vous asseoir - sinon 2 gorgées",
+
+            // Règles de maître
+            "Nouvelle règle : Tu es le maître des gorgées - distribue comme tu veux pendant 3 tours",
+            "Nouvelle règle : Tu deviens le roi/reine - tout le monde obéit pendant 3 tours",
+            "Nouvelle règle : Tu choisis un vice-roi - vous distribuez ensemble 5 tours",
+            "Nouvelle règle : Tu es le juge - tu décides qui boit et combien pendant 3 tours",
+            "Nouvelle règle : Tu es le dictateur - impose 3 règles absurdes pendant 5 tours",
+
+            // Règles de groupe
+            "Nouvelle règle : Quand quelqu'un boit, tout le monde boit pendant 3 tours",
+            "Nouvelle règle : Le dernier à toucher le sol boit 3 gorgées - dès que quelqu'un touche le sol",
+            "Nouvelle règle : Si quelqu'un dit 'putain', tout le monde boit",
+            "Nouvelle règle : Quand quelqu'un rit, le suivant doit rire aussi - sinon 2 gorgées",
+            "Nouvelle règle : Interdiction de croiser les jambes - sinon 2 gorgées",
+
+            // Règles de désignation
+            "Nouvelle règle : Tu peux pointer quelqu'un du doigt - il boit 2 gorgées (utilisable 3 fois)",
+            "Nouvelle règle : À chaque fois qu'on dit ton prénom, tu distribues 2 gorgées",
+            "Nouvelle règle : Tu choisis un partenaire - vous buvez toujours ensemble",
+            "Nouvelle règle : Tu as un bouclier - tu peux refiler 3 gorgées à quelqu'un d'autre (utilisable 3 fois)",
+            "Nouvelle règle : Tu es immunisé pendant 3 tours - tu ne bois pas",
+
+            // Règles absurdes
+            "Nouvelle règle : Tout le monde doit danser en buvant - sinon 2 gorgées",
+            "Nouvelle règle : Parlez en inversant les syllabes - sinon 3 gorgées",
+            "Nouvelle règle : Chantez au lieu de parler - sinon 2 gorgées",
+            "Nouvelle règle : Faites semblant d'être des poulets - sinon 3 gorgées",
+            "Nouvelle règle : Riez diaboliquement après chaque phrase - sinon 2 gorgées",
+            "Nouvelle règle : Parlez avec un accent étranger - sinon 2 gorgées",
+            "Nouvelle règle : Bégayez volontairement - sinon 2 gorgées",
+            "Nouvelle règle : Parlez super fort - sinon 2 gorgées",
+            "Nouvelle règle : Chuchotez uniquement - sinon 3 gorgées",
+            "Nouvelle règle : Imitez la personne avant vous - sinon 2 gorgées",
+
+            // Règles de contact
+            "Nouvelle règle : Interdiction de toucher son téléphone - sinon 4 gorgées",
+            "Nouvelle règle : Interdiction de toucher son visage - sinon 2 gorgées",
+            "Nouvelle règle : Tenez-vous la main avec votre voisin - sinon 3 gorgées chacun",
+            "Nouvelle règle : Interdiction de toucher la table - sinon 2 gorgées",
+            "Nouvelle règle : Gardez les bras croisés sauf pour boire - sinon 2 gorgées",
+
+            // Règles de temps
+            "Nouvelle règle : Vous avez 5 secondes pour répondre - sinon 3 gorgées",
+            "Nouvelle règle : Pause de 30 secondes entre chaque gorgée - sinon 2 gorgées supplémentaires",
+            "Nouvelle règle : Comptez à rebours de 10 avant de boire - sinon recommencez",
+            "Nouvelle règle : Interdiction de boire pendant 2 tours (sauf obligation) - stockez vos gorgées",
+            "Nouvelle règle : Double dose : toutes les gorgées comptent double pendant 3 tours"
+        ]
+    },
+
+    compliment: {
+        name: "Compliments",
+        challenges: [
+            // Compliments physiques
+            "Fais un compliment physique à la personne la plus proche",
+            "Dis ce que tu trouves de plus beau chez chacun",
+            "Complimente les yeux de 3 personnes ici",
+            "Dis à quelqu'un qu'il/elle a un beau sourire et pourquoi",
+            "Complimente le style vestimentaire de tout le monde",
+
+            // Compliments de personnalité
+            "Dis à la personne à ta gauche ce que tu admires chez elle",
+            "Complimente l'humour de quelqu'un et donne un exemple",
+            "Dis à quelqu'un pourquoi tu es content(e) qu'il/elle soit là",
+            "Fais un compliment sincère sur l'intelligence de quelqu'un",
+            "Dis à quelqu'un quelle qualité tu voudrais lui voler",
+
+            // Compliments créatifs
+            "Compare quelqu'un à une célébrité (positivement) et explique pourquoi",
+            "Dis à quelqu'un à quel super-héros il/elle te fait penser",
+            "Fais un compliment en utilisant une métaphore poétique",
+            "Dis à quelqu'un quelle chanson te fait penser à lui/elle (positivement)",
+            "Compare chaque personne à un animal mignon et explique",
+
+            // Compliments d'actions
+            "Remercie quelqu'un pour quelque chose qu'il/elle a fait",
+            "Dis à quelqu'un ce qu'il/elle fait de mieux",
+            "Complimente la façon dont quelqu'un traite les autres",
+            "Dis à quelqu'un pourquoi il/elle est un(e) bon(ne) ami(e)",
+            "Remercie chaque personne pour quelque chose de spécifique",
+
+            // Compliments de groupe
+            "Fais un compliment à tout le groupe sur l'ambiance",
+            "Dis ce que tu aimes le plus dans ce groupe d'amis",
+            "Complimente l'énergie de la soirée grâce à quelqu'un",
+            "Dis pourquoi tu es heureux/heureuse d'être ici avec eux",
+            "Fais un compliment collectif sincère",
+
+            // Compliments cachés
+            "Révèle un compliment que tu pensais en secret sur quelqu'un",
+            "Dis à quelqu'un ce que tu n'oses jamais lui dire de positif",
+            "Avoue à qui tu as pensé du bien récemment et pourquoi",
+            "Révèle ce que tu admires secrètement chez quelqu'un",
+            "Dis un truc gentil que tu pensais mais jamais dit",
+
+            // Compliments comparatifs
+            "Dis en quoi quelqu'un ici t'inspire",
+            "Explique ce que tu as appris de positif de quelqu'un",
+            "Dis à quelqu'un en quoi il/elle te rend meilleur(e)",
+            "Complimente quelqu'un sur ce qu'il/elle fait mieux que toi",
+            "Dis à quelqu'un quelle qualité de lui/elle tu voudrais avoir",
+
+            // Compliments de couple/amitié
+            "Complimente la relation entre 2 personnes ici",
+            "Dis quel duo ici tu trouves le plus mignon et pourquoi",
+            "Complimente l'amitié de 2 personnes présentes",
+            "Dis pourquoi 2 personnes ici vont bien ensemble",
+            "Fais un compliment sur la complicité d'un binôme",
+
+            // Compliments sur le changement
+            "Dis à quelqu'un comment il/elle a positivement changé",
+            "Complimente les progrès de quelqu'un",
+            "Dis ce que tu trouves de mieux chez quelqu'un maintenant vs avant",
+            "Complimente l'évolution positive de quelqu'un",
+            "Dis à quelqu'un ce qu'il/elle a accompli dont tu es fier(e)",
+
+            // Compliments profonds
+            "Dis à quelqu'un pourquoi tu l'apprécie vraiment",
+            "Fais un compliment sincère qui vient du cœur à quelqu'un",
+            "Dis à quelqu'un ce qu'il/elle apporte de spécial au groupe",
+            "Explique pourquoi tu es reconnaissant(e) d'avoir quelqu'un dans ta vie",
+            "Dis à quelqu'un ce que tu n'oublieras jamais de lui/elle",
+
+            // Compliments multiples
+            "Fais 3 compliments différents à la même personne",
+            "Complimente une qualité différente de chaque personne",
+            "Dis un compliment physique et un compliment de personnalité à quelqu'un",
+            "Fais un compliment passé, présent et futur à quelqu'un",
+            "Donne 5 raisons pour lesquelles quelqu'un est génial"
+        ]
+    },
+
+    cascade: {
+        name: "Cascade",
+        challenges: [
+            // Cascades simples
+            "Cascade : Tout le monde boit 3 gorgées en même temps",
+            "Cascade : Chacun son tour boit - le dernier boit double",
+            "Cascade : Buvez en chaîne - chacun après l'autre sans pause",
+            "Cascade : Comptez de 1 à 20, chaque chiffre = quelqu'un boit",
+            "Cascade : Tour de table - chacun boit le nombre de son âge en gorgées",
+
+            // Cascades cumulatives
+            "Cascade cumulative : Le 1er boit 1, le 2e boit 2, etc.",
+            "Cascade inverse : Le dernier boit 1, l'avant-dernier 2, etc.",
+            "Cascade double : Tout le monde boit, puis re-boit le double",
+            "Cascade progressive : Ajoutez 1 gorgée à chaque personne",
+            "Cascade multiplicative : Doublez à chaque personne (1, 2, 4, 8...)",
+
+            // Cascades avec défis
+            "Cascade + danse : Chacun danse puis boit",
+            "Cascade + compliment : Complimentez votre voisin avant de boire",
+            "Cascade + imitation : Imitez quelqu'un avant de boire",
+            "Cascade + chant : Chantez une phrase puis buvez",
+            "Cascade + vérité : Avouez quelque chose puis buvez",
+
+            // Cascades de choix
+            "Cascade démocratique : Chacun vote - la majorité boit",
+            "Cascade de désignation : Chacun désigne qui boit après",
+            "Cascade de sacrifice : Chacun peut boire double pour sauver quelqu'un",
+            "Cascade de partage : Distribuez vos gorgées aux autres",
+            "Cascade d'immunité : 1 personne est sauvée - les autres boivent double",
+
+            // Cascades à thème
+            "Cascade alphabétique : Dans l'ordre alphabétique des prénoms",
+            "Cascade par âge : Du plus jeune au plus vieux",
+            "Cascade par taille : Du plus grand au plus petit",
+            "Cascade par ordre d'arrivée à la soirée",
+            "Cascade selon les signes astro : Feu, Terre, Air, Eau",
+
+            // Cascades compétitives
+            "Cascade battle : Formez 2 équipes - l'équipe qui boit le plus vite gagne",
+            "Cascade élimination : Le plus lent à chaque tour est éliminé",
+            "Cascade survival : Buvez à tour de rôle - le dernier debout gagne",
+            "Cascade duel : 2 camps - le camp perdant boit double",
+            "Cascade relais : Course de relais avec des verres",
+
+            // Cascades créatives
+            "Cascade histoire : Racontez une histoire - à chaque mot clé tout le monde boit",
+            "Cascade musique : À chaque beat de la musique tout le monde boit",
+            "Cascade chorégraphie : Créez une chorégraphie de groupe en buvant",
+            "Cascade chanson : Chantez une chanson - buvez aux refrains",
+            "Cascade mime : Mimez en cascade - celui qui se trompe boit",
+
+            // Cascades extrêmes
+            "Méga cascade : Tout le monde cul sec en même temps",
+            "Cascade infernale : Buvez, dansez, chantez, rebuvez",
+            "Cascade sans fin : Continuez jusqu'à ce que quelqu'un abandonne",
+            "Cascade pyramide : 1 boit, puis 2, puis 3, puis tout le monde",
+            "Cascade finale : Double dose pour tout le monde",
+
+            // Cascades interactives
+            "Cascade compliment : Dites un compliment puis buvez ensemble",
+            "Cascade bisou : Faites la bise à chacun puis buvez",
+            "Cascade câlin : Câlin de groupe puis tout le monde boit",
+            "Cascade high five : High five à tout le monde puis buvez",
+            "Cascade toast : Portez un toast ensemble puis buvez",
+
+            // Cascades selon conditions
+            "Cascade conditionnelle : Si tu as déjà... bois",
+            "Cascade sélective : Ceux qui portent du noir boivent",
+            "Cascade zodiacale : Ton signe astrologique décide",
+            "Cascade saisonnière : Selon ton mois de naissance",
+            "Cascade numérique : Selon le chiffre de ton âge",
+
+            // Cascades de règles
+            "Cascade silence : Buvez en silence - le premier qui parle boit double",
+            "Cascade yeux fermés : Tout le monde boit les yeux fermés",
+            "Cascade debout : Tout le monde se lève et boit debout",
+            "Cascade synchronisée : Buvez parfaitement en même temps",
+            "Cascade rituelle : Créez un rituel de groupe avant de boire"
+        ]
+    },
+
+    hotSexy: {
+        name: "Hot & Sexy",
+        challenges: [
+            // Défis de séduction soft
+            "Fais un regard séducteur à la personne de ton choix pendant 10 secondes",
+            "Dis ta meilleure phrase de drague à quelqu'un ici",
+            "Fais un clin d'œil sexy à 3 personnes différentes",
+            "Mords-toi la lèvre en regardant quelqu'un dans les yeux",
+            "Fais ton meilleur sourire charmeur à tout le monde",
+            "Dis 3 compliments sexy à la personne à ta gauche",
+            "Fais une danse sensuelle de 20 secondes",
+            "Murmure quelque chose de coquin à l'oreille de quelqu'un",
+            "Lèche tes lèvres de façon provocante en regardant quelqu'un",
+            "Fais ton meilleur regard langoureux",
+
+            // Défis de contact physique
+            "Embrasse quelqu'un sur la joue très lentement",
+            "Caresse le bras de quelqu'un sensuellement",
+            "Masse la nuque de quelqu'un pendant 30 secondes",
+            "Fais courir ton doigt sur le dos de quelqu'un",
+            "Embrasse la main de quelqu'un comme dans un film romantique",
+            "Enlace quelqu'un par derrière pendant 20 secondes",
+            "Touche délicatement le visage de quelqu'un",
+            "Frôle 'accidentellement' la personne à ta droite",
+            "Pose ta tête sur l'épaule de quelqu'un pendant 1 minute",
+            "Tiens la main de quelqu'un et caresse-la du pouce",
+
+            // Défis de bisous
+            "Embrasse quelqu'un sur la joue - mais très proche de la bouche",
+            "Bisou esquimau avec la personne de ton choix",
+            "Embrasse le cou de quelqu'un (si accord)",
+            "Fais un bisou papillon avec tes cils sur la joue de quelqu'un",
+            "Embrasse 3 parties du corps de quelqu'un (mains, front, joue...)",
+            "Bisou dans le cou de la personne à ta gauche",
+            "Embrasse l'épaule de quelqu'un",
+            "Bisou soufflé à tout le monde de façon sexy",
+            "Embrasse le lobe d'oreille de quelqu'un",
+            "Donne un French kiss à la personne de ton choix ou bois 8 gorgées",
+
+            // Vérités osées
+            "Révèle ton fantasme le plus secret",
+            "Dis avec qui tu coucherais ici (si tout était possible)",
+            "Raconte ton expérience sexuelle la plus folle",
+            "Avoue ton kink le plus bizarre",
+            "Quelle partie du corps trouves-tu la plus sexy ?",
+            "Raconte où est le lieu le plus risqué où tu l'as fait",
+            "Quelle position préfères-tu et pourquoi ?",
+            "Avoue combien de partenaires tu as eu",
+            "Raconte ton pire plan cul",
+            "Dis qui tu trouves le/la plus sexy dans cette pièce",
+
+            // Défis de strip-tease soft
+            "Enlève un accessoire de façon sexy",
+            "Desserre un bouton/baisse une bretelle de façon sensuelle",
+            "Fais un mini strip-tease de 15 secondes",
+            "Enlève tes chaussures de la façon la plus sexy possible",
+            "Défais tes cheveux lentement en regardant quelqu'un",
+            "Montre ton épaule de façon provocante",
+            "Remonte légèrement ton haut/bas en dansant",
+            "Enlève ta veste/pull de façon sensuelle",
+            "Dénoue quelque chose sur toi lentement",
+            "Fais semblant d'enlever ton haut (sans vraiment le faire)",
+
+            // Défis de lap dance
+            "Fais un lap dance de 20 secondes à quelqu'un",
+            "Assieds-toi sur les genoux de quelqu'un face à lui/elle pendant 30 secondes",
+            "Danse de façon provocante devant quelqu'un",
+            "Fais un slow très collé-serré avec quelqu'un",
+            "Twerk devant la personne de ton choix",
+            "Danse sensuellement contre quelqu'un",
+            "Fais une danse du ventre pour quelqu'un",
+            "Ondule du corps devant quelqu'un pendant 20 secondes",
+            "Fais ton meilleur déhanché face à quelqu'un",
+            "Danse en touchant sensuellement ton corps",
+
+            // Body shots et défis alcool sexy
+            "Fais un body shot sur quelqu'un (sel, shot, citron)",
+            "Bois dans le nombril de quelqu'un (si accord)",
+            "Lèche du sel sur le cou/poignet de quelqu'un",
+            "Verse une goutte d'alcool sur toi et fais lécher à quelqu'un",
+            "Partage ton verre en buvant bouche à bouche (presque)",
+            "Fais-toi verser de l'alcool dans la bouche par quelqu'un",
+            "Bois un shot pendant qu'on te fait un massage",
+            "Body shot inversé : quelqu'un fait un shot sur toi",
+            "Bois ton verre pendant qu'on te caresse les cheveux",
+            "Shot challenge : bois pendant qu'on t'embrasse le cou",
+
+            // Jeux de rôle sexy
+            "Joue une scène de film romantique avec quelqu'un",
+            "Fais semblant de séduire quelqu'un dans un bar",
+            "Rejoue une scène de série hot (soft version)",
+            "Incarne un(e) escort girl/boy qui drague un client",
+            "Fais le/la prof séducteur/séductrice",
+            "Joue le rôle d'un mannequin sexy en séance photo",
+            "Fais comme si tu draguais quelqu'un sur Tinder IRL",
+            "Incarne quelqu'un qui fait un strip-tease (habillé)",
+            "Joue un rendez-vous speed dating très chaud",
+            "Fais une audition pour un film pour adultes (soft)",
+
+            // Défis de groupe sexy
+            "Le groupe vote : qui devrait t'embrasser ?",
+            "Choisis 2 personnes et fais-leur un massage d'épaules simultané",
+            "Tout le monde te touche en même temps (épaules, bras, cheveux...)",
+            "Le groupe décide quelle partie de ton corps est la plus sexy",
+            "Fais un compliment sexy à chaque personne",
+            "3 personnes te font un câlin de groupe sensuel",
+            "Tout le monde te dit ce qu'il trouve sexy chez toi",
+            "Le groupe choisit ton meilleur atout physique",
+            "Fais une pyramide sensuelle avec 3 personnes",
+            "Câlin de groupe : tu es au centre, les autres t'enlacent",
+
+            // Défis de lit/chambre
+            "Décris ta routine avant de coucher avec quelqu'un",
+            "Raconte où tu aimes qu'on te touche",
+            "Mime comment tu te comportes au lit (soft version)",
+            "Avoue quel son tu fais pendant l'acte",
+            "Raconte ta technique de séduction préférée",
+            "Mime un orgasme de façon exagérée",
+            "Dis ce que tu aimes qu'on te fasse",
+            "Raconte une position que tu veux essayer",
+            "Avoue si tu préfères donner ou recevoir",
+            "Décris ton partenaire sexuel idéal",
+
+            // Défis de vêtements
+            "Échange un vêtement avec quelqu'un du sexe opposé",
+            "Porte le soutien-gorge de quelqu'un par-dessus ton t-shirt",
+            "Mets un vêtement sexy qui ne t'appartient pas",
+            "Défais ton pantalon/jupe de 2 boutons",
+            "Porte les sous-vêtements de quelqu'un sur la tête",
+            "Enlève tes chaussettes de la façon la plus sexy",
+            "Mets ton t-shirt à l'envers et mouillé (spray d'eau)",
+            "Porte uniquement une veste sans rien dessous (fermée)",
+            "Transforme un vêtement en tenue sexy",
+            "Reste en débardeur/marcel pour le reste de la partie",
+
+            // Défis couples/binômes sexy
+            "Choisis un partenaire et regardez-vous dans les yeux 2 minutes sans rire",
+            "Slow ultra collé avec quelqu'un pendant une chanson entière",
+            "Allongez-vous l'un sur l'autre (décemment) pendant 30s",
+            "Fais des bisous papillon partout sur le visage de quelqu'un",
+            "Câlin ultra serré pendant 1 minute avec quelqu'un",
+            "Masse sensuellement les mains de quelqu'un",
+            "Chuchote des choses coquines à l'oreille de quelqu'un pendant 30s",
+            "Caresse le visage de quelqu'un très lentement",
+            "Joue avec les cheveux de quelqu'un sensuellement",
+            "Respire dans le cou de quelqu'un pendant 20 secondes",
+
+            // Défis extrêmes (18+)
+            "7 minutes au paradis avec la personne de ton choix ou bois 10 gorgées",
+            "Embrasse passionnément quelqu'un ou cul sec",
+            "Strip-tease complet jusqu'aux sous-vêtements ou distribue 15 gorgées",
+            "Lèche du chocolat/chantilly sur la peau de quelqu'un",
+            "Laisse quelqu'un te donner un suçon",
+            "Embrasse 3 personnes sur la bouche ou bois 12 gorgées",
+            "Fais un lap dance complet ou cul sec + 5 gorgées",
+            "Montre ton soutien-gorge/boxer ou distribue 10 gorgées",
+            "Mordille le cou de quelqu'un ou bois 8 gorgées",
+            "Session massage sensuel 2 minutes sur quelqu'un"
+        ]
     }
 };
