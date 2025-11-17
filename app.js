@@ -759,6 +759,15 @@ function getRoulette() {
 
 // Mime & Charades
 function getMime() {
+    if (!games.mime || !games.mime.challenges || games.mime.challenges.length === 0) {
+        return `
+            <div class="challenge-card">
+                <div class="challenge-type">❌ Erreur</div>
+                <div class="challenge-text">Le mode Mime & Charades n'est pas disponible. Veuillez rafraîchir la page.</div>
+            </div>
+        `;
+    }
+
     const challenge = games.mime.challenges[Math.floor(Math.random() * games.mime.challenges.length)];
 
     return `
@@ -771,6 +780,15 @@ function getMime() {
 
 // Hot Seat
 function getHotSeat() {
+    if (!games.hotSeat || !games.hotSeat.challenges || games.hotSeat.challenges.length === 0) {
+        return `
+            <div class="challenge-card">
+                <div class="challenge-type">❌ Erreur</div>
+                <div class="challenge-text">Le mode Hot Seat n'est pas disponible. Veuillez rafraîchir la page.</div>
+            </div>
+        `;
+    }
+
     const challenge = games.hotSeat.challenges[Math.floor(Math.random() * games.hotSeat.challenges.length)];
 
     // Effet spécial pour hot seat
@@ -787,6 +805,15 @@ function getHotSeat() {
 
 // Duel
 function getDuel() {
+    if (!games.duel || !games.duel.challenges || games.duel.challenges.length === 0) {
+        return `
+            <div class="challenge-card">
+                <div class="challenge-type">❌ Erreur</div>
+                <div class="challenge-text">Le mode Duel n'est pas disponible. Veuillez rafraîchir la page.</div>
+            </div>
+        `;
+    }
+
     const challenge = games.duel.challenges[Math.floor(Math.random() * games.duel.challenges.length)];
 
     // Effet spécial pour duel
@@ -802,6 +829,15 @@ function getDuel() {
 
 // Vote
 function getVote() {
+    if (!games.vote || !games.vote.challenges || games.vote.challenges.length === 0) {
+        return `
+            <div class="challenge-card">
+                <div class="challenge-type">❌ Erreur</div>
+                <div class="challenge-text">Le mode Vote n'est pas disponible. Veuillez rafraîchir la page.</div>
+            </div>
+        `;
+    }
+
     const challenge = games.vote.challenges[Math.floor(Math.random() * games.vote.challenges.length)];
 
     return `
@@ -814,6 +850,15 @@ function getVote() {
 
 // Histoire à Raconter
 function getHistoire() {
+    if (!games.histoire || !games.histoire.challenges || games.histoire.challenges.length === 0) {
+        return `
+            <div class="challenge-card">
+                <div class="challenge-type">❌ Erreur</div>
+                <div class="challenge-text">Le mode Histoire à Raconter n'est pas disponible. Veuillez rafraîchir la page.</div>
+            </div>
+        `;
+    }
+
     const challenge = games.histoire.challenges[Math.floor(Math.random() * games.histoire.challenges.length)];
 
     return `
@@ -826,6 +871,15 @@ function getHistoire() {
 
 // Nouvelles Règles
 function getRegles() {
+    if (!games.regles || !games.regles.challenges || games.regles.challenges.length === 0) {
+        return `
+            <div class="challenge-card">
+                <div class="challenge-type">❌ Erreur</div>
+                <div class="challenge-text">Le mode Nouvelles Règles n'est pas disponible. Veuillez rafraîchir la page.</div>
+            </div>
+        `;
+    }
+
     const challenge = games.regles.challenges[Math.floor(Math.random() * games.regles.challenges.length)];
 
     // Effet spécial pour nouvelle règle
@@ -842,6 +896,15 @@ function getRegles() {
 
 // Compliments
 function getCompliment() {
+    if (!games.compliment || !games.compliment.challenges || games.compliment.challenges.length === 0) {
+        return `
+            <div class="challenge-card">
+                <div class="challenge-type">❌ Erreur</div>
+                <div class="challenge-text">Le mode Compliment n'est pas disponible. Veuillez rafraîchir la page.</div>
+            </div>
+        `;
+    }
+
     const challenge = games.compliment.challenges[Math.floor(Math.random() * games.compliment.challenges.length)];
 
     // Effet spécial pour compliment
@@ -857,6 +920,15 @@ function getCompliment() {
 
 // Cascade
 function getCascade() {
+    if (!games.cascade || !games.cascade.challenges || games.cascade.challenges.length === 0) {
+        return `
+            <div class="challenge-card">
+                <div class="challenge-type">❌ Erreur</div>
+                <div class="challenge-text">Le mode Cascade n'est pas disponible. Veuillez rafraîchir la page.</div>
+            </div>
+        `;
+    }
+
     const challenge = games.cascade.challenges[Math.floor(Math.random() * games.cascade.challenges.length)];
 
     // Effet spécial pour cascade
@@ -873,6 +945,15 @@ function getCascade() {
 
 // Hot & Sexy
 function getHotSexy() {
+    if (!games.hotSexy || !games.hotSexy.challenges || games.hotSexy.challenges.length === 0) {
+        return `
+            <div class="challenge-card">
+                <div class="challenge-type">❌ Erreur</div>
+                <div class="challenge-text">Le mode Hot & Sexy n'est pas disponible. Veuillez rafraîchir la page.</div>
+            </div>
+        `;
+    }
+
     const challenge = games.hotSexy.challenges[Math.floor(Math.random() * games.hotSexy.challenges.length)];
 
     // Effets spéciaux pour hot & sexy
