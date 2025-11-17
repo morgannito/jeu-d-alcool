@@ -927,7 +927,7 @@ function addPlayer() {
 
         input.value = '';
         updatePlayerList();
-        AudioSystem.sounds.success();
+        if (typeof AudioSystem !== 'undefined') AudioSystem.sounds.success();
     }
 }
 
@@ -941,8 +941,7 @@ function getRandomColor() {
 
 function updatePlayerList() {
     const list = document.getElementById('playerList');
-    const btn = document.getElementById('startWithPlayersBtn');
-    const count = document.getElementById('playerCount');
+    const btn = document.getElementById('startBtn');
 
     list.innerHTML = players.map((player, index) => `
         <div class="player-card" style="background: ${player.color}">
@@ -951,8 +950,10 @@ function updatePlayerList() {
         </div>
     `).join('');
 
-    count.textContent = players.length;
-    btn.disabled = players.length === 0;
+    // Le bouton est activé s'il y a des joueurs ou si on peut jouer sans joueurs
+    if (btn) {
+        btn.disabled = false; // Toujours activé pour permettre de jouer sans joueurs
+    }
 }
 
 function removePlayer(index) {
