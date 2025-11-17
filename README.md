@@ -2,6 +2,10 @@
 
 Application web de jeux de soirée avec de l'alcool pour animer vos soirées entre amis !
 
+## 🎯 Plus de 10 000 défis générés dynamiquement !
+
+Cette application contient une base de données massive avec plus de **11 000 défis uniques** générés aléatoirement pour garantir des soirées toujours différentes et jamais ennuyeuses !
+
 ## 🎮 Modes de Jeu
 
 ### 1. Action ou Vérité 🎭
