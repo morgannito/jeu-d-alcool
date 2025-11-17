@@ -17,15 +17,61 @@
         Défi #<span id="counterValue">0</span>
     </div>
 
+    <!-- Indicateur du joueur actuel -->
+    <div id="currentPlayerIndicator" class="current-player-indicator hidden">
+        <span id="currentPlayerName"></span>
+    </div>
+
     <div class="container">
         <header>
             <h1>🍻 Jeux de Soirée 🍻</h1>
         </header>
 
+        <!-- Écran de configuration des joueurs -->
+        <div id="playerSetup" class="player-setup">
+            <h2>👥 Configuration des joueurs</h2>
+            <p class="setup-subtitle">Ajoutez les joueurs (optionnel, ou cliquez sur "Passer")</p>
+
+            <div class="player-input-area">
+                <input type="text" id="playerNameInput" placeholder="Nom du joueur" maxlength="20">
+                <button class="add-player-btn" onclick="addPlayer()">➕ Ajouter</button>
+            </div>
+
+            <div id="playerList" class="player-list">
+                <!-- Les joueurs ajoutés apparaîtront ici -->
+            </div>
+
+            <div class="setup-actions">
+                <button class="skip-btn" onclick="skipPlayerSetup()">Passer ⏭️</button>
+                <button class="start-btn" onclick="startWithPlayers()" disabled id="startWithPlayersBtn">
+                    Commencer 🎮 (<span id="playerCount">0</span>)
+                </button>
+            </div>
+        </div>
+
         <!-- Menu de sélection des jeux -->
-        <div id="menu" class="menu">
+        <div id="menu" class="menu hidden">
+            <button class="back-btn" onclick="backToPlayerSetup()">← Retour aux joueurs</button>
+
             <h2>Choisissez votre jeu</h2>
+
+            <!-- Filtre de difficulté -->
+            <div class="difficulty-filter">
+                <label>🎯 Difficulté :</label>
+                <select id="difficultySelect" onchange="updateDifficultyFilter()">
+                    <option value="all">Toutes</option>
+                    <option value="easy">⭐ Facile</option>
+                    <option value="medium">⭐⭐ Moyen</option>
+                    <option value="hard">⭐⭐⭐ Difficile</option>
+                </select>
+            </div>
+
             <div class="game-buttons">
+                <!-- Mode Mix spécial -->
+                <button class="game-btn special-btn" onclick="startGame('mix')">
+                    <span class="icon">🎲</span>
+                    <span>Mode MIX (Toutes catégories)</span>
+                </button>
                 <button class="game-btn" onclick="startGame('truthOrDare')">
                     <span class="icon">🎭</span>
                     <span>Action ou Vérité</span>
@@ -90,9 +136,21 @@
             </div>
 
             <div class="game-controls">
-                <button id="nextBtn" class="next-btn" onclick="nextChallenge()">
-                    Suivant
+                <button id="prevBtn" class="prev-btn" onclick="previousChallenge()" disabled>
+                    ← Précédent
                 </button>
+                <button id="nextBtn" class="next-btn" onclick="nextChallenge()">
+                    Suivant →
+                </button>
+            </div>
+
+            <!-- Historique des défis -->
+            <div class="history-toggle">
+                <button onclick="toggleHistory()">📜 Historique (<span id="historyCount">0</span>)</button>
+            </div>
+            <div id="historyPanel" class="history-panel hidden">
+                <h3>Historique des défis</h3>
+                <div id="historyList"></div>
             </div>
         </div>
     </div>
