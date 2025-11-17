@@ -616,6 +616,30 @@ function nextChallenge() {
         case 'roulette':
             content = getRoulette();
             break;
+        case 'mime':
+            content = getMime();
+            break;
+        case 'hotSeat':
+            content = getHotSeat();
+            break;
+        case 'duel':
+            content = getDuel();
+            break;
+        case 'vote':
+            content = getVote();
+            break;
+        case 'histoire':
+            content = getHistoire();
+            break;
+        case 'regles':
+            content = getRegles();
+            break;
+        case 'compliment':
+            content = getCompliment();
+            break;
+        case 'cascade':
+            content = getCascade();
+            break;
     }
 
     document.getElementById('gameContent').innerHTML = content;
@@ -699,6 +723,120 @@ function getRoulette() {
         <div class="challenge-card" style="background: ${color}">
             <div class="challenge-type">🎰 Roulette Russe</div>
             <div class="challenge-text">${challenge.text}</div>
+        </div>
+    `;
+}
+
+// Mime & Charades
+function getMime() {
+    const challenge = games.mime.challenges[Math.floor(Math.random() * games.mime.challenges.length)];
+
+    return `
+        <div class="challenge-card">
+            <div class="challenge-type">🎬 Mime & Charades</div>
+            <div class="challenge-text">${challenge}</div>
+        </div>
+    `;
+}
+
+// Hot Seat
+function getHotSeat() {
+    const challenge = games.hotSeat.challenges[Math.floor(Math.random() * games.hotSeat.challenges.length)];
+
+    // Effet spécial pour hot seat
+    AudioSystem.sounds.warning();
+    VisualEffects.flash('rgba(255, 100, 0, 0.3)');
+
+    return `
+        <div class="challenge-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">
+            <div class="challenge-type">🔥 Hot Seat</div>
+            <div class="challenge-text">${challenge}</div>
+        </div>
+    `;
+}
+
+// Duel
+function getDuel() {
+    const challenge = games.duel.challenges[Math.floor(Math.random() * games.duel.challenges.length)];
+
+    // Effet spécial pour duel
+    AudioSystem.sounds.warning();
+
+    return `
+        <div class="challenge-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">
+            <div class="challenge-type">⚔️ Duel</div>
+            <div class="challenge-text">${challenge}</div>
+        </div>
+    `;
+}
+
+// Vote
+function getVote() {
+    const challenge = games.vote.challenges[Math.floor(Math.random() * games.vote.challenges.length)];
+
+    return `
+        <div class="challenge-card" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)">
+            <div class="challenge-type">🗳️ Vote</div>
+            <div class="challenge-text">${challenge}</div>
+        </div>
+    `;
+}
+
+// Histoire à Raconter
+function getHistoire() {
+    const challenge = games.histoire.challenges[Math.floor(Math.random() * games.histoire.challenges.length)];
+
+    return `
+        <div class="challenge-card" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)">
+            <div class="challenge-type">📖 Histoire à Raconter</div>
+            <div class="challenge-text">${challenge}</div>
+        </div>
+    `;
+}
+
+// Nouvelles Règles
+function getRegles() {
+    const challenge = games.regles.challenges[Math.floor(Math.random() * games.regles.challenges.length)];
+
+    // Effet spécial pour nouvelle règle
+    AudioSystem.sounds.success();
+    VisualEffects.createParticles(window.innerWidth / 2, window.innerHeight / 2);
+
+    return `
+        <div class="challenge-card" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)">
+            <div class="challenge-type">📜 Nouvelle Règle</div>
+            <div class="challenge-text">${challenge}</div>
+        </div>
+    `;
+}
+
+// Compliments
+function getCompliment() {
+    const challenge = games.compliment.challenges[Math.floor(Math.random() * games.compliment.challenges.length)];
+
+    // Effet spécial pour compliment
+    VisualEffects.createConfetti(20);
+
+    return `
+        <div class="challenge-card" style="background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%)">
+            <div class="challenge-type">💝 Compliment</div>
+            <div class="challenge-text">${challenge}</div>
+        </div>
+    `;
+}
+
+// Cascade
+function getCascade() {
+    const challenge = games.cascade.challenges[Math.floor(Math.random() * games.cascade.challenges.length)];
+
+    // Effet spécial pour cascade
+    AudioSystem.sounds.warning();
+    VisualEffects.flash('rgba(0, 184, 217, 0.3)');
+
+    return `
+        <div class="challenge-card" style="background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%)">
+            <div class="challenge-type">🌊 Cascade</div>
+            <div class="challenge-text">${challenge}</div>
         </div>
     `;
 }
