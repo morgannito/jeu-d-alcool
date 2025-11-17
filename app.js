@@ -3,16 +3,11 @@ let currentGame = null;
 let games = null;
 let challengeCount = 0;
 
-// Nouveau: Système de joueurs
-let players = [];
-let currentPlayerIndex = 0;
-
-// Nouveau: Historique des défis
-let challengeHistory = [];
-let currentHistoryIndex = -1;
-
-// Nouveau: Difficulté sélectionnée
-let selectedDifficulty = 'all'; // 'all', 'easy', 'medium', 'hard'
+// Note: Les variables suivantes sont définies dans ultimate-features.js:
+// - players, currentPlayerIndex
+// - challengeHistory, currentHistoryIndex
+// - selectedDifficulty, teamMode, teams
+// - sessionStartTime, mixCount, hardCount
 
 // Générateurs de défis massifs
 const challengeGenerators = {
@@ -569,23 +564,15 @@ function showNotification(message) {
     setTimeout(() => notification.remove(), 3000);
 }
 
-// Démarrer un jeu (MODIFIÉ avec nouvelles fonctionnalités)
+// Démarrer un jeu (Version de base - overridée par ultimate-features.js)
 function startGame(gameType) {
     currentGame = gameType;
     challengeCount = 0;
-    currentHistoryIndex = -1;
-    challengeHistory = [];
     updateCounter();
 
     // Sons et effets
-    AudioSystem.sounds.click();
-    VisualEffects.createParticles(window.innerWidth / 2, window.innerHeight / 2);
-
-    // Initialiser le système de joueurs
-    if (players.length > 0) {
-        currentPlayerIndex = 0;
-        updateCurrentPlayer();
-    }
+    if (typeof AudioSystem !== 'undefined') AudioSystem.sounds.click();
+    if (typeof VisualEffects !== 'undefined') VisualEffects.createParticles(window.innerWidth / 2, window.innerHeight / 2);
 
     document.getElementById('menu').classList.add('hidden');
     document.getElementById('gameArea').classList.remove('hidden');
@@ -593,24 +580,21 @@ function startGame(gameType) {
 
     // Réinitialiser les boutons de navigation
     document.getElementById('prevBtn').disabled = true;
-    updateHistoryDisplay();
 
     nextChallenge();
 }
 
-// Retour au menu (MODIFIÉ)
+// Retour au menu (Version de base - overridée par ultimate-features.js)
 function backToMenu() {
     currentGame = null;
     challengeCount = 0;
 
     // Sons et effets
-    AudioSystem.sounds.click();
+    if (typeof AudioSystem !== 'undefined') AudioSystem.sounds.click();
 
     document.getElementById('menu').classList.remove('hidden');
     document.getElementById('gameArea').classList.add('hidden');
     document.getElementById('challengeCounter').classList.add('hidden');
-    document.getElementById('currentPlayerIndicator').classList.add('hidden');
-    document.getElementById('historyPanel').classList.add('hidden');
     document.getElementById('gameContent').innerHTML = '';
 }
 
@@ -619,35 +603,18 @@ function updateCounter() {
     document.getElementById('counterValue').textContent = challengeCount;
 }
 
-// Défi suivant (MODIFIÉ avec nouvelles fonctionnalités)
+// Défi suivant (Version de base - overridée par ultimate-features.js)
 function nextChallenge() {
-    // Si on navigue dans l'historique, vérifier si on peut avancer
-    if (currentHistoryIndex < challengeHistory.length - 1) {
-        currentHistoryIndex++;
-        displayChallengeFromHistory();
-        updateNavigationButtons();
-        AudioSystem.sounds.click();
-        return;
-    }
-
     // Nouveau défi
     let content = '';
     challengeCount++;
     updateCounter();
 
     // Son de nouveau défi
-    AudioSystem.sounds.newChallenge();
-
-    // Passer au joueur suivant
-    if (players.length > 0) {
-        nextPlayer();
-    }
+    if (typeof AudioSystem !== 'undefined') AudioSystem.sounds.newChallenge();
 
     // Générer le défi selon la catégorie
     switch(currentGame) {
-        case 'mix':
-            content = getMix();
-            break;
         case 'truthOrDare':
             content = getTruthOrDare();
             break;
@@ -690,9 +657,6 @@ function nextChallenge() {
     }
 
     document.getElementById('gameContent').innerHTML = content;
-
-    // Ajouter à l'historique
-    addToHistory(content, currentGame);
 }
 
 // Action ou Vérité
@@ -916,10 +880,12 @@ window.addEventListener('load', () => {
     console.log('Jeux de soirée chargés ! 🍻');
 
     // Ajouter des effets sonores sur les boutons
-    const buttons = document.querySelectorAll('.game-btn, .next-btn, .back-btn');
-    buttons.forEach(button => {
-        button.addEventListener('mouseenter', () => {
-            AudioSystem.sounds.hover();
+    if (typeof AudioSystem !== 'undefined') {
+        const buttons = document.querySelectorAll('.game-btn, .next-btn, .back-btn');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                AudioSystem.sounds.hover();
+            });
         });
-    });
+    }
 });
