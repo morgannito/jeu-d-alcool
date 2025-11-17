@@ -12,6 +12,7 @@ COPY app.js /usr/share/nginx/html/
 COPY effects.js /usr/share/nginx/html/
 COPY games-data.js /usr/share/nginx/html/
 COPY games-data-extended.js /usr/share/nginx/html/
+COPY ultimate-features.js /usr/share/nginx/html/
 COPY README.md /usr/share/nginx/html/
 
 # Expose le port 80
