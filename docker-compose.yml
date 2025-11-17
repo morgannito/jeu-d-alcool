@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  jeu-alcool:
+    build: .
+    container_name: jeu-alcool-app
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    labels:
+      - "description=Application de jeux de soirée avec 11 000+ défis"

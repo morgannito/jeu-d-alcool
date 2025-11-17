@@ -35,6 +35,55 @@ Tente ta chance ! Tu peux gagner gros ou tout perdre.
 
 ## 🚀 Installation
 
+### Option 1 : Docker (Recommandé) 🐳
+
+**La méthode la plus simple !** Lancez l'application en une seule commande :
+
+```bash
+# Cloner le dépôt
+git clone https://github.com/morgannito/jeu-d-alcool.git
+cd jeu-d-alcool
+
+# Lancer avec Docker Compose
+docker-compose up -d
+```
+
+L'application sera accessible sur **http://localhost:8080** 🎉
+
+#### Commandes Docker utiles :
+
+```bash
+# Démarrer l'application
+docker-compose up -d
+
+# Arrêter l'application
+docker-compose down
+
+# Voir les logs
+docker-compose logs -f
+
+# Rebuilder après modifications
+docker-compose up -d --build
+```
+
+#### Ou avec Docker directement :
+
+```bash
+# Build l'image
+docker build -t jeu-alcool .
+
+# Lancer le container
+docker run -d -p 8080:80 --name jeu-alcool-app jeu-alcool
+
+# Arrêter le container
+docker stop jeu-alcool-app
+
+# Supprimer le container
+docker rm jeu-alcool-app
+```
+
+### Option 2 : Sans Docker
+
 Aucune installation nécessaire ! Il suffit d'ouvrir `index.html` dans votre navigateur.
 
 ```bash
@@ -48,10 +97,11 @@ open index.html  # ou double-cliquez sur le fichier
 
 ## 📱 Utilisation
 
-1. Ouvrez `index.html` dans votre navigateur
-2. Choisissez un mode de jeu
-3. Cliquez sur "Suivant" pour obtenir de nouveaux défis
-4. Amusez-vous bien !
+1. **Avec Docker** : Ouvrez http://localhost:8080 dans votre navigateur
+2. **Sans Docker** : Ouvrez `index.html` dans votre navigateur
+3. Choisissez un mode de jeu
+4. Cliquez sur "Suivant" pour obtenir de nouveaux défis
+5. Amusez-vous bien !
 
 ## ⚠️ Avertissement
 
@@ -69,12 +119,31 @@ open index.html  # ou double-cliquez sur le fichier
 
 ## 🎨 Fonctionnalités
 
-- ✅ 4 modes de jeu différents
-- ✅ Design moderne et responsive
-- ✅ Animations fluides
-- ✅ Interface intuitive
-- ✅ Compatible mobile et desktop
-- ✅ Aucune dépendance externe
+### Jeux
+- ✅ **4 modes de jeu** différents avec 11 000+ défis
+- ✅ **Génération dynamique** de défis uniques
+- ✅ **Compteur de défis** en temps réel
+
+### Effets Audiovisuels
+- ✅ **7 types de sons** générés avec Web Audio API
+- ✅ **Confettis animés** pour les jackpots
+- ✅ **Particules explosives** et flash d'écran
+- ✅ **15+ animations CSS** (shake, pulse, glow, bounce, rotate3D)
+- ✅ **Notifications toast** contextuelles
+- ✅ **Toggle son** pour activer/désactiver l'audio
+
+### Design & UX
+- ✅ **Design moderne** et responsive
+- ✅ **Interface intuitive** et fluide
+- ✅ **Compatible** mobile et desktop
+- ✅ **Gradient animé** en arrière-plan
+- ✅ **Effets visuels contextuels** selon le type de défi
+
+### Technique
+- ✅ **Aucune dépendance** externe
+- ✅ **Docker Ready** - Déploiement en une commande
+- ✅ **Léger et rapide** - Container nginx alpine
+- ✅ **100% JavaScript vanilla**
 
 ## 📝 Personnalisation
 
