@@ -2,10 +2,24 @@ version: '3.8'
 
 services:
   jeu-alcool:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: jeu-alcool-app
     ports:
       - "8080:80"
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     labels:
       - "description=Application de jeux de soirée avec 11 000+ défis"
+    networks:
+      - jeu-alcool-network
+
+networks:
+  jeu-alcool-network:
+    driver: bridge

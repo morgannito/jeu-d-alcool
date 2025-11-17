@@ -44,11 +44,17 @@ Tente ta chance ! Tu peux gagner gros ou tout perdre.
 git clone https://github.com/morgannito/jeu-d-alcool.git
 cd jeu-d-alcool
 
-# Lancer avec Docker Compose
+# Méthode A : Avec le script (plus facile)
+chmod +x deploy.sh
+./deploy.sh start
+
+# Méthode B : Avec docker-compose directement
 docker-compose up -d
 ```
 
 L'application sera accessible sur **http://localhost:8080** 🎉
+
+**📖 Problèmes de timeout ou autres ?** → Consultez le [**Guide Docker complet**](DOCKER.md)
 
 #### Commandes Docker utiles :
 
