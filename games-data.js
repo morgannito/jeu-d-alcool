@@ -1525,5 +1525,166 @@ const gamesData = {
             "Cascade synchronisée : Buvez parfaitement en même temps",
             "Cascade rituelle : Créez un rituel de groupe avant de boire"
         ]
+    },
+
+    hotSexy: {
+        name: "Hot & Sexy",
+        challenges: [
+            // Défis de séduction soft
+            "Fais un regard séducteur à la personne de ton choix pendant 10 secondes",
+            "Dis ta meilleure phrase de drague à quelqu'un ici",
+            "Fais un clin d'œil sexy à 3 personnes différentes",
+            "Mords-toi la lèvre en regardant quelqu'un dans les yeux",
+            "Fais ton meilleur sourire charmeur à tout le monde",
+            "Dis 3 compliments sexy à la personne à ta gauche",
+            "Fais une danse sensuelle de 20 secondes",
+            "Murmure quelque chose de coquin à l'oreille de quelqu'un",
+            "Lèche tes lèvres de façon provocante en regardant quelqu'un",
+            "Fais ton meilleur regard langoureux",
+
+            // Défis de contact physique
+            "Embrasse quelqu'un sur la joue très lentement",
+            "Caresse le bras de quelqu'un sensuellement",
+            "Masse la nuque de quelqu'un pendant 30 secondes",
+            "Fais courir ton doigt sur le dos de quelqu'un",
+            "Embrasse la main de quelqu'un comme dans un film romantique",
+            "Enlace quelqu'un par derrière pendant 20 secondes",
+            "Touche délicatement le visage de quelqu'un",
+            "Frôle 'accidentellement' la personne à ta droite",
+            "Pose ta tête sur l'épaule de quelqu'un pendant 1 minute",
+            "Tiens la main de quelqu'un et caresse-la du pouce",
+
+            // Défis de bisous
+            "Embrasse quelqu'un sur la joue - mais très proche de la bouche",
+            "Bisou esquimau avec la personne de ton choix",
+            "Embrasse le cou de quelqu'un (si accord)",
+            "Fais un bisou papillon avec tes cils sur la joue de quelqu'un",
+            "Embrasse 3 parties du corps de quelqu'un (mains, front, joue...)",
+            "Bisou dans le cou de la personne à ta gauche",
+            "Embrasse l'épaule de quelqu'un",
+            "Bisou soufflé à tout le monde de façon sexy",
+            "Embrasse le lobe d'oreille de quelqu'un",
+            "Donne un French kiss à la personne de ton choix ou bois 8 gorgées",
+
+            // Vérités osées
+            "Révèle ton fantasme le plus secret",
+            "Dis avec qui tu coucherais ici (si tout était possible)",
+            "Raconte ton expérience sexuelle la plus folle",
+            "Avoue ton kink le plus bizarre",
+            "Quelle partie du corps trouves-tu la plus sexy ?",
+            "Raconte où est le lieu le plus risqué où tu l'as fait",
+            "Quelle position préfères-tu et pourquoi ?",
+            "Avoue combien de partenaires tu as eu",
+            "Raconte ton pire plan cul",
+            "Dis qui tu trouves le/la plus sexy dans cette pièce",
+
+            // Défis de strip-tease soft
+            "Enlève un accessoire de façon sexy",
+            "Desserre un bouton/baisse une bretelle de façon sensuelle",
+            "Fais un mini strip-tease de 15 secondes",
+            "Enlève tes chaussures de la façon la plus sexy possible",
+            "Défais tes cheveux lentement en regardant quelqu'un",
+            "Montre ton épaule de façon provocante",
+            "Remonte légèrement ton haut/bas en dansant",
+            "Enlève ta veste/pull de façon sensuelle",
+            "Dénoue quelque chose sur toi lentement",
+            "Fais semblant d'enlever ton haut (sans vraiment le faire)",
+
+            // Défis de lap dance
+            "Fais un lap dance de 20 secondes à quelqu'un",
+            "Assieds-toi sur les genoux de quelqu'un face à lui/elle pendant 30 secondes",
+            "Danse de façon provocante devant quelqu'un",
+            "Fais un slow très collé-serré avec quelqu'un",
+            "Twerk devant la personne de ton choix",
+            "Danse sensuellement contre quelqu'un",
+            "Fais une danse du ventre pour quelqu'un",
+            "Ondule du corps devant quelqu'un pendant 20 secondes",
+            "Fais ton meilleur déhanché face à quelqu'un",
+            "Danse en touchant sensuellement ton corps",
+
+            // Body shots et défis alcool sexy
+            "Fais un body shot sur quelqu'un (sel, shot, citron)",
+            "Bois dans le nombril de quelqu'un (si accord)",
+            "Lèche du sel sur le cou/poignet de quelqu'un",
+            "Verse une goutte d'alcool sur toi et fais lécher à quelqu'un",
+            "Partage ton verre en buvant bouche à bouche (presque)",
+            "Fais-toi verser de l'alcool dans la bouche par quelqu'un",
+            "Bois un shot pendant qu'on te fait un massage",
+            "Body shot inversé : quelqu'un fait un shot sur toi",
+            "Bois ton verre pendant qu'on te caresse les cheveux",
+            "Shot challenge : bois pendant qu'on t'embrasse le cou",
+
+            // Jeux de rôle sexy
+            "Joue une scène de film romantique avec quelqu'un",
+            "Fais semblant de séduire quelqu'un dans un bar",
+            "Rejoue une scène de série hot (soft version)",
+            "Incarne un(e) escort girl/boy qui drague un client",
+            "Fais le/la prof séducteur/séductrice",
+            "Joue le rôle d'un mannequin sexy en séance photo",
+            "Fais comme si tu draguais quelqu'un sur Tinder IRL",
+            "Incarne quelqu'un qui fait un strip-tease (habillé)",
+            "Joue un rendez-vous speed dating très chaud",
+            "Fais une audition pour un film pour adultes (soft)",
+
+            // Défis de groupe sexy
+            "Le groupe vote : qui devrait t'embrasser ?",
+            "Choisis 2 personnes et fais-leur un massage d'épaules simultané",
+            "Tout le monde te touche en même temps (épaules, bras, cheveux...)",
+            "Le groupe décide quelle partie de ton corps est la plus sexy",
+            "Fais un compliment sexy à chaque personne",
+            "3 personnes te font un câlin de groupe sensuel",
+            "Tout le monde te dit ce qu'il trouve sexy chez toi",
+            "Le groupe choisit ton meilleur atout physique",
+            "Fais une pyramide sensuelle avec 3 personnes",
+            "Câlin de groupe : tu es au centre, les autres t'enlacent",
+
+            // Défis de lit/chambre
+            "Décris ta routine avant de coucher avec quelqu'un",
+            "Raconte où tu aimes qu'on te touche",
+            "Mime comment tu te comportes au lit (soft version)",
+            "Avoue quel son tu fais pendant l'acte",
+            "Raconte ta technique de séduction préférée",
+            "Mime un orgasme de façon exagérée",
+            "Dis ce que tu aimes qu'on te fasse",
+            "Raconte une position que tu veux essayer",
+            "Avoue si tu préfères donner ou recevoir",
+            "Décris ton partenaire sexuel idéal",
+
+            // Défis de vêtements
+            "Échange un vêtement avec quelqu'un du sexe opposé",
+            "Porte le soutien-gorge de quelqu'un par-dessus ton t-shirt",
+            "Mets un vêtement sexy qui ne t'appartient pas",
+            "Défais ton pantalon/jupe de 2 boutons",
+            "Porte les sous-vêtements de quelqu'un sur la tête",
+            "Enlève tes chaussettes de la façon la plus sexy",
+            "Mets ton t-shirt à l'envers et mouillé (spray d'eau)",
+            "Porte uniquement une veste sans rien dessous (fermée)",
+            "Transforme un vêtement en tenue sexy",
+            "Reste en débardeur/marcel pour le reste de la partie",
+
+            // Défis couples/binômes sexy
+            "Choisis un partenaire et regardez-vous dans les yeux 2 minutes sans rire",
+            "Slow ultra collé avec quelqu'un pendant une chanson entière",
+            "Allongez-vous l'un sur l'autre (décemment) pendant 30s",
+            "Fais des bisous papillon partout sur le visage de quelqu'un",
+            "Câlin ultra serré pendant 1 minute avec quelqu'un",
+            "Masse sensuellement les mains de quelqu'un",
+            "Chuchote des choses coquines à l'oreille de quelqu'un pendant 30s",
+            "Caresse le visage de quelqu'un très lentement",
+            "Joue avec les cheveux de quelqu'un sensuellement",
+            "Respire dans le cou de quelqu'un pendant 20 secondes",
+
+            // Défis extrêmes (18+)
+            "7 minutes au paradis avec la personne de ton choix ou bois 10 gorgées",
+            "Embrasse passionnément quelqu'un ou cul sec",
+            "Strip-tease complet jusqu'aux sous-vêtements ou distribue 15 gorgées",
+            "Lèche du chocolat/chantilly sur la peau de quelqu'un",
+            "Laisse quelqu'un te donner un suçon",
+            "Embrasse 3 personnes sur la bouche ou bois 12 gorgées",
+            "Fais un lap dance complet ou cul sec + 5 gorgées",
+            "Montre ton soutien-gorge/boxer ou distribue 10 gorgées",
+            "Mordille le cou de quelqu'un ou bois 8 gorgées",
+            "Session massage sensuel 2 minutes sur quelqu'un"
+        ]
     }
 };

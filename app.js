@@ -640,6 +640,9 @@ function nextChallenge() {
         case 'cascade':
             content = getCascade();
             break;
+        case 'hotSexy':
+            content = getHotSexy();
+            break;
     }
 
     document.getElementById('gameContent').innerHTML = content;
@@ -837,6 +840,24 @@ function getCascade() {
         <div class="challenge-card" style="background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%)">
             <div class="challenge-type">🌊 Cascade</div>
             <div class="challenge-text">${challenge}</div>
+        </div>
+    `;
+}
+
+// Hot & Sexy
+function getHotSexy() {
+    const challenge = games.hotSexy.challenges[Math.floor(Math.random() * games.hotSexy.challenges.length)];
+
+    // Effets spéciaux pour hot & sexy
+    AudioSystem.sounds.chug();
+    VisualEffects.flash('rgba(255, 20, 147, 0.4)');
+    VisualEffects.createParticles(window.innerWidth / 2, window.innerHeight / 2);
+
+    return `
+        <div class="challenge-card" style="background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%)">
+            <div class="challenge-type">🔥💋 Hot & Sexy</div>
+            <div class="challenge-text">${challenge}</div>
+            <div class="penalty" style="color: #fff; margin-top: 10px;">⚠️ 18+ - Consentement requis</div>
         </div>
     `;
 }
